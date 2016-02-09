@@ -52,37 +52,32 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+            label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
+            if (sim == null)
+                return;
             switch (e.Result.Text)
             {
                 case "table up":
                     sim.SendAxleMoveCommand(0, 80, 100);
-                    label1.Text = "Input: TABLE_UP";
                     break;
                 case "table down":
                     sim.SendAxleMoveCommand(0, 20, 100);
-                    label1.Text = "Input: TABLE_DOWN";
                     break;
                 case "table stop":
                     sim.SendAxleStopCommand(0);
-                    label1.Text = "Input: TABLE_STOP";
                     break;
-
                 case "screen closer":
                     sim.SendAxleMoveCommand(1, 50, 100);
-                    label1.Text = "Input: SCREEN_CLOSER";
                     break;
                 case "screen back":
                     sim.SendAxleMoveCommand(1, 10, 100);
-                    label1.Text = "Input: SCREEN_BACK";
                     break;
                 case "screen stop":
                     sim.SendAxleStopCommand(1);
-                    label1.Text = "Input: SCREEN_STOP";
                     break;
                 case "stop":
                     sim.SendAxleStopCommand(0);
                     sim.SendAxleStopCommand(1);
-                    label1.Text = "Input: STOP";
                     label2.Text = "Status: OFF";
                     recEngine.RecognizeAsyncStop();
                     break;
