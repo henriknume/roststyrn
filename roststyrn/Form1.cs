@@ -108,7 +108,8 @@ namespace roststyrn
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
                 label2.Text = "Status: OFF";
-                sim.SendAxleStopCommand(0);
+                if(sim != null)
+                    sim.SendAxleStopCommand(0);
                 recEngine.RecognizeAsyncStop();
                 asyncOn = false;
             }
