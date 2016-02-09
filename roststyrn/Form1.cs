@@ -14,11 +14,12 @@ namespace roststyrn
 {
     public partial class Form1 : Form
     {
-        SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
-        Choices commands;
-        GrammarBuilder gBuilder;
-        Grammar grammar;
-        bool asyncOn;
+        private SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
+        private Choices commands;
+        private GrammarBuilder gBuilder;
+        private Grammar grammar;
+        private bool asyncOn;
+        private Simulator sim;
 
         public Form1()
         {
@@ -42,17 +43,21 @@ namespace roststyrn
 
 
         }
+
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             switch (e.Result.Text)
             {
                 case "table up":
+                    sim.SendMoveAxleCommand(0, 100, 100);
                     label1.Text = "TABLE UP";
                     break;
                 case "table down":
+                    sim.SendMoveAxleCommand(0, 0, 100);
                     label1.Text = "TABLE DOWN";
                     break;
                 case "stop":
+                    sim.SendStop(0);
                     label2.Text = "AV";
                     recEngine.RecognizeAsyncStop();
                     break;
@@ -78,6 +83,7 @@ namespace roststyrn
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
                 label2.Text = "AV";
+                sim.SendStop(0);
                 recEngine.RecognizeAsyncStop();
                 asyncOn = false;
             }
@@ -92,6 +98,13 @@ namespace roststyrn
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void startSimBtn_Click(object sender, EventArgs e)
+        {
+            if(sim == null) //only able to create 1
+                sim = new Simulator();
+            sim.Show();
         }
     }
 }

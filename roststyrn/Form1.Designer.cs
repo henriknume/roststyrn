@@ -30,12 +30,13 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.startSimBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 64);
+            this.label1.Location = new System.Drawing.Point(118, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 2;
@@ -44,20 +45,32 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 137);
+            this.label2.Location = new System.Drawing.Point(118, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // startSimBtn
+            // 
+            this.startSimBtn.Location = new System.Drawing.Point(12, 210);
+            this.startSimBtn.Name = "startSimBtn";
+            this.startSimBtn.Size = new System.Drawing.Size(260, 23);
+            this.startSimBtn.TabIndex = 4;
+            this.startSimBtn.Text = "Start simulator";
+            this.startSimBtn.UseVisualStyleBackColor = true;
+            this.startSimBtn.Click += new System.EventHandler(this.startSimBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.startSimBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -68,6 +81,7 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button startSimBtn;
     }
 }
 
