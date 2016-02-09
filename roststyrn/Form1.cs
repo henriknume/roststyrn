@@ -25,7 +25,13 @@ namespace roststyrn
         {
             InitializeComponent();
             commands = new Choices();
-            commands.Add(new string[] { "table up", "table down", "stop" });
+            commands.Add(new string[] { "table up",
+                                        "table down",
+                                        "table stop",
+                                        "screen closer",
+                                        "screen back",
+                                        "screen stop",
+                                         "stop" });
             gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             grammar = new Grammar(gBuilder);
@@ -49,16 +55,35 @@ namespace roststyrn
             switch (e.Result.Text)
             {
                 case "table up":
-                    sim.SendMoveAxleCommand(0, 100, 100);
-                    label1.Text = "TABLE UP";
+                    sim.SendAxleMoveCommand(0, 80, 100);
+                    label1.Text = "Input: TABLE_UP";
                     break;
                 case "table down":
-                    sim.SendMoveAxleCommand(0, 0, 100);
-                    label1.Text = "TABLE DOWN";
+                    sim.SendAxleMoveCommand(0, 20, 100);
+                    label1.Text = "Input: TABLE_DOWN";
+                    break;
+                case "table stop":
+                    sim.SendAxleStopCommand(0);
+                    label1.Text = "Input: TABLE_STOP";
+                    break;
+
+                case "screen closer":
+                    sim.SendAxleMoveCommand(1, 50, 100);
+                    label1.Text = "Input: SCREEN_CLOSER";
+                    break;
+                case "screen back":
+                    sim.SendAxleMoveCommand(1, 10, 100);
+                    label1.Text = "Input: SCREEN_BACK";
+                    break;
+                case "screen stop":
+                    sim.SendAxleStopCommand(1);
+                    label1.Text = "Input: SCREEN_STOP";
                     break;
                 case "stop":
-                    sim.SendStop(0);
-                    label2.Text = "AV";
+                    sim.SendAxleStopCommand(0);
+                    sim.SendAxleStopCommand(1);
+                    label1.Text = "Input: STOP";
+                    label2.Text = "Status: OFF";
                     recEngine.RecognizeAsyncStop();
                     break;
             }
@@ -69,7 +94,7 @@ namespace roststyrn
         {
             if ((keyData == (Keys.Control | Keys.R)) && asyncOn == false)
             {
-                label2.Text = "PÅ";
+                label2.Text = "Status: ON";
                 recEngine.RecognizeAsync(RecognizeMode.Multiple);
                 asyncOn = true;
                 return true;
@@ -82,8 +107,8 @@ namespace roststyrn
         {
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
-                label2.Text = "AV";
-                sim.SendStop(0);
+                label2.Text = "Status: OFF";
+                sim.SendAxleStopCommand(0);
                 recEngine.RecognizeAsyncStop();
                 asyncOn = false;
             }

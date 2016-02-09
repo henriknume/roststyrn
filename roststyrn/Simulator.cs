@@ -25,19 +25,40 @@ namespace roststyrn
             InitializeComponent();
             axles = new List<Axle>();
             axles.Add(new Axle(0, 1, 1, 100));
-            axles.Add(new Axle(1, 1, 1, 80));
+            axles.Add(new Axle(1, 1, 1, 100));
         }
 
-        public void SendStop(int id)
+        public void SendAxleMoveCommand(int ID, int pos, int speed)
         {
+            cancelWork = false;
+            if (t1 != null) t1.Abort();
+            t1 = new Thread(() => MoveAxles(ID, pos));
+            t1.Start();
+        }
 
+        public void SendAxleStopCommand(int ID)
+        {
+            //stop all axles
+            cancelWork = true;
+            try { Thread.Sleep(100); } catch (ThreadAbortException e) { Console.WriteLine(e.StackTrace); }
+            // stop axle with ID
+            axles[ID].Stop();
+
+            //start all again
+            cancelWork = false;
+            if (t1 != null) t1.Abort();
+            t1 = new Thread(() => MoveAxles(ID, -1));  // -1 as target wont change any target values
+            t1.Start();
         }
 
         private void MoveAxles(int id, int target)
         {
             Console.WriteLine("Table moving...");
-            axles[id].SetTargetPos(target);
-
+            if(target != -1)    // dont set target if target is -1,  used for stop command, change this later.
+            {
+                axles[id].SetTargetPos(target);  
+            }
+                
             bool running = true;
             while (running)
             {
@@ -63,81 +84,57 @@ namespace roststyrn
         private void UpdateProgressBar()
         {
             progressBar1.Value = axles[0].currentPos;
-            label1AxlePos.Text = "Axle 1 pos: " + axles[0].currentPos;
+            label1AxlePos.Text = "Axle ID #1  Pos:: " + axles[0].currentPos;
 
             progressBar2.Value = axles[1].currentPos;
-            label2AxlePos.Text = "Axle 2 pos: " + axles[1].currentPos;
+            label2AxlePos.Text = "Axle ID #1  Pos:: " + axles[1].currentPos;
         }
 
         private void WorkFinished()
         {
-            buttonUp.Enabled = true;
-            buttonDown.Enabled = true;
             buttonStop.Enabled = false;
+            buttonStop2.Enabled = false;
         }
 
-        public void SendMoveAxleCommand(int ID, int pos, int speed)
-        {
-            cancelWork = false;
-            if (t1 != null) t1.Abort();
-            t1 = new Thread(() => MoveAxles(ID, pos));
-            t1.Start();
-        }
+        
 
         //   --- Buttonlisteners ---  
         private void buttonUp_Click(object sender, EventArgs e)
         {
-
-            buttonUp.Enabled = false;
             buttonStop.Enabled = true;
-            buttonDown.Enabled = true;
-
-            SendMoveAxleCommand(0, 70, 100);
+            SendAxleMoveCommand(0, 80, 100);
 
         }
 
         private void buttonDown_Click(object sender, EventArgs e)
         {
-            buttonUp.Enabled = true;
-            buttonDown.Enabled = false;
             buttonStop.Enabled = true;
-
-            SendMoveAxleCommand(0, 1, 100);
-
+            SendAxleMoveCommand(0, 10, 100);
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
             buttonStop.Enabled = false;
-            cancelWork = true;
+            SendAxleStopCommand(0);
         }
 
         private void buttonUp2_Click(object sender, EventArgs e)
         {
-            buttonUp2.Enabled = false;
             buttonStop2.Enabled = true;
-            buttonDown2.Enabled = true;
-
-            SendMoveAxleCommand(1, 50, 100);
-
+            SendAxleMoveCommand(1, 80, 100);
         }
 
         private void buttonDown2_Click(object sender, EventArgs e)
         {
-            buttonUp2.Enabled = true;
-            buttonDown2.Enabled = false;
             buttonStop2.Enabled = true;
-
-            SendMoveAxleCommand(1, 20, 100);
+            SendAxleMoveCommand(1, 10, 100);
         }
 
         private void buttonStop2_Click(object sender, EventArgs e)
         {
-            cancelWork = true;
+            buttonStop2.Enabled = false;
+            SendAxleStopCommand(1);
         }
-
-        //----------------------------
-
 
 
         //--------- light listeners --------------------------------------------
@@ -178,8 +175,6 @@ namespace roststyrn
             }
         }
 
-
-
         /* method that turns on turns off lights 
          * Also regulates light brightness.... 
          */
@@ -205,11 +200,5 @@ namespace roststyrn
                 Console.WriteLine("incorrect ID");
             }
         }
-
-
-
-
-
-
     }
 }

@@ -49,11 +49,17 @@
             this.mVDC_Output = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.labelaxles = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonUp
             // 
-            this.buttonUp.Location = new System.Drawing.Point(40, 47);
+            this.buttonUp.Location = new System.Drawing.Point(10, 95);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(75, 23);
             this.buttonUp.TabIndex = 0;
@@ -63,23 +69,23 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(325, 46);
+            this.progressBar1.Location = new System.Drawing.Point(10, 65);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(255, 24);
+            this.progressBar1.Size = new System.Drawing.Size(237, 24);
             this.progressBar1.TabIndex = 1;
             this.progressBar1.Value = 1;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(325, 107);
+            this.progressBar2.Location = new System.Drawing.Point(10, 151);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(255, 23);
+            this.progressBar2.Size = new System.Drawing.Size(237, 23);
             this.progressBar2.TabIndex = 2;
             this.progressBar2.Value = 1;
             // 
             // buttonDown
             // 
-            this.buttonDown.Location = new System.Drawing.Point(40, 91);
+            this.buttonDown.Location = new System.Drawing.Point(91, 95);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(75, 23);
             this.buttonDown.TabIndex = 3;
@@ -89,7 +95,7 @@
             // 
             // buttonStop
             // 
-            this.buttonStop.Location = new System.Drawing.Point(40, 134);
+            this.buttonStop.Location = new System.Drawing.Point(172, 95);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(75, 23);
             this.buttonStop.TabIndex = 4;
@@ -100,24 +106,24 @@
             // label1AxlePos
             // 
             this.label1AxlePos.AutoSize = true;
-            this.label1AxlePos.Location = new System.Drawing.Point(322, 30);
+            this.label1AxlePos.Location = new System.Drawing.Point(7, 49);
             this.label1AxlePos.Name = "label1AxlePos";
-            this.label1AxlePos.Size = new System.Drawing.Size(59, 13);
+            this.label1AxlePos.Size = new System.Drawing.Size(84, 13);
             this.label1AxlePos.TabIndex = 5;
-            this.label1AxlePos.Text = "Axle 1 pos:";
+            this.label1AxlePos.Text = "Axle ID #1  Pos:";
             // 
             // label2AxlePos
             // 
             this.label2AxlePos.AutoSize = true;
-            this.label2AxlePos.Location = new System.Drawing.Point(322, 91);
+            this.label2AxlePos.Location = new System.Drawing.Point(7, 135);
             this.label2AxlePos.Name = "label2AxlePos";
-            this.label2AxlePos.Size = new System.Drawing.Size(62, 13);
+            this.label2AxlePos.Size = new System.Drawing.Size(84, 13);
             this.label2AxlePos.TabIndex = 6;
-            this.label2AxlePos.Text = "Axle 2 pos: ";
+            this.label2AxlePos.Text = "Axle ID #2  Pos:";
             // 
             // buttonStop2
             // 
-            this.buttonStop2.Location = new System.Drawing.Point(146, 133);
+            this.buttonStop2.Location = new System.Drawing.Point(172, 180);
             this.buttonStop2.Name = "buttonStop2";
             this.buttonStop2.Size = new System.Drawing.Size(75, 23);
             this.buttonStop2.TabIndex = 9;
@@ -127,7 +133,7 @@
             // 
             // buttonDown2
             // 
-            this.buttonDown2.Location = new System.Drawing.Point(146, 90);
+            this.buttonDown2.Location = new System.Drawing.Point(91, 180);
             this.buttonDown2.Name = "buttonDown2";
             this.buttonDown2.Size = new System.Drawing.Size(75, 23);
             this.buttonDown2.TabIndex = 8;
@@ -137,7 +143,7 @@
             // 
             // buttonUp2
             // 
-            this.buttonUp2.Location = new System.Drawing.Point(146, 46);
+            this.buttonUp2.Location = new System.Drawing.Point(10, 180);
             this.buttonUp2.Name = "buttonUp2";
             this.buttonUp2.Size = new System.Drawing.Size(75, 23);
             this.buttonUp2.TabIndex = 7;
@@ -147,7 +153,7 @@
             // 
             // LightOn
             // 
-            this.LightOn.Location = new System.Drawing.Point(40, 230);
+            this.LightOn.Location = new System.Drawing.Point(6, 57);
             this.LightOn.Name = "LightOn";
             this.LightOn.Size = new System.Drawing.Size(75, 23);
             this.LightOn.TabIndex = 10;
@@ -157,7 +163,7 @@
             // 
             // LightOff
             // 
-            this.LightOff.Location = new System.Drawing.Point(146, 229);
+            this.LightOff.Location = new System.Drawing.Point(91, 57);
             this.LightOff.Name = "LightOff";
             this.LightOff.Size = new System.Drawing.Size(75, 23);
             this.LightOff.TabIndex = 11;
@@ -167,7 +173,7 @@
             // 
             // WarmLight
             // 
-            this.WarmLight.Location = new System.Drawing.Point(40, 273);
+            this.WarmLight.Location = new System.Drawing.Point(6, 100);
             this.WarmLight.Name = "WarmLight";
             this.WarmLight.Size = new System.Drawing.Size(75, 23);
             this.WarmLight.TabIndex = 12;
@@ -177,7 +183,7 @@
             // 
             // ColdLight
             // 
-            this.ColdLight.Location = new System.Drawing.Point(146, 272);
+            this.ColdLight.Location = new System.Drawing.Point(91, 99);
             this.ColdLight.Name = "ColdLight";
             this.ColdLight.Size = new System.Drawing.Size(75, 23);
             this.ColdLight.TabIndex = 13;
@@ -188,7 +194,7 @@
             // LightCheckOn
             // 
             this.LightCheckOn.AutoSize = true;
-            this.LightCheckOn.Location = new System.Drawing.Point(280, 234);
+            this.LightCheckOn.Location = new System.Drawing.Point(183, 61);
             this.LightCheckOn.Name = "LightCheckOn";
             this.LightCheckOn.Size = new System.Drawing.Size(64, 17);
             this.LightCheckOn.TabIndex = 14;
@@ -198,7 +204,7 @@
             // LightCheckOff
             // 
             this.LightCheckOff.AutoSize = true;
-            this.LightCheckOff.Location = new System.Drawing.Point(385, 234);
+            this.LightCheckOff.Location = new System.Drawing.Point(258, 61);
             this.LightCheckOff.Name = "LightCheckOff";
             this.LightCheckOff.Size = new System.Drawing.Size(64, 17);
             this.LightCheckOff.TabIndex = 15;
@@ -208,7 +214,7 @@
             // WarmCheck
             // 
             this.WarmCheck.AutoSize = true;
-            this.WarmCheck.Location = new System.Drawing.Point(280, 278);
+            this.WarmCheck.Location = new System.Drawing.Point(183, 100);
             this.WarmCheck.Name = "WarmCheck";
             this.WarmCheck.Size = new System.Drawing.Size(76, 17);
             this.WarmCheck.TabIndex = 16;
@@ -218,7 +224,7 @@
             // ColdCheck
             // 
             this.ColdCheck.AutoSize = true;
-            this.ColdCheck.Location = new System.Drawing.Point(385, 278);
+            this.ColdCheck.Location = new System.Drawing.Point(258, 100);
             this.ColdCheck.Name = "ColdCheck";
             this.ColdCheck.Size = new System.Drawing.Size(69, 17);
             this.ColdCheck.TabIndex = 17;
@@ -227,7 +233,7 @@
             // 
             // mVDC_Output
             // 
-            this.mVDC_Output.Location = new System.Drawing.Point(519, 255);
+            this.mVDC_Output.Location = new System.Drawing.Point(333, 97);
             this.mVDC_Output.Name = "mVDC_Output";
             this.mVDC_Output.Size = new System.Drawing.Size(100, 20);
             this.mVDC_Output.TabIndex = 18;
@@ -235,50 +241,94 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 189);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 20);
+            this.label1.Size = new System.Drawing.Size(139, 24);
             this.label1.TabIndex = 19;
             this.label1.Text = "Light properties";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(519, 229);
+            this.label2.Location = new System.Drawing.Point(340, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 20;
             this.label2.Text = "Current mVDC";
             // 
-            // Form1
+            // labelaxles
+            // 
+            this.labelaxles.AutoSize = true;
+            this.labelaxles.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelaxles.Location = new System.Drawing.Point(6, 16);
+            this.labelaxles.Name = "labelaxles";
+            this.labelaxles.Size = new System.Drawing.Size(57, 24);
+            this.labelaxles.TabIndex = 21;
+            this.labelaxles.Text = "Axles";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.LightOn);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.LightOff);
+            this.groupBox1.Controls.Add(this.WarmLight);
+            this.groupBox1.Controls.Add(this.mVDC_Output);
+            this.groupBox1.Controls.Add(this.ColdLight);
+            this.groupBox1.Controls.Add(this.ColdCheck);
+            this.groupBox1.Controls.Add(this.LightCheckOn);
+            this.groupBox1.Controls.Add(this.WarmCheck);
+            this.groupBox1.Controls.Add(this.LightCheckOff);
+            this.groupBox1.Location = new System.Drawing.Point(17, 289);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(450, 131);
+            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.buttonUp);
+            this.groupBox2.Controls.Add(this.progressBar1);
+            this.groupBox2.Controls.Add(this.labelaxles);
+            this.groupBox2.Controls.Add(this.progressBar2);
+            this.groupBox2.Controls.Add(this.buttonStop2);
+            this.groupBox2.Controls.Add(this.buttonDown);
+            this.groupBox2.Controls.Add(this.buttonDown2);
+            this.groupBox2.Controls.Add(this.buttonStop);
+            this.groupBox2.Controls.Add(this.buttonUp2);
+            this.groupBox2.Controls.Add(this.label1AxlePos);
+            this.groupBox2.Controls.Add(this.label2AxlePos);
+            this.groupBox2.Location = new System.Drawing.Point(17, 65);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(450, 218);
+            this.groupBox2.TabIndex = 23;
+            this.groupBox2.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft PhagsPa", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(411, 53);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "EOWTable Simulator";
+            // 
+            // Simulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 354);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.mVDC_Output);
-            this.Controls.Add(this.ColdCheck);
-            this.Controls.Add(this.WarmCheck);
-            this.Controls.Add(this.LightCheckOff);
-            this.Controls.Add(this.LightCheckOn);
-            this.Controls.Add(this.ColdLight);
-            this.Controls.Add(this.WarmLight);
-            this.Controls.Add(this.LightOff);
-            this.Controls.Add(this.LightOn);
-            this.Controls.Add(this.buttonStop2);
-            this.Controls.Add(this.buttonDown2);
-            this.Controls.Add(this.buttonUp2);
-            this.Controls.Add(this.label2AxlePos);
-            this.Controls.Add(this.label1AxlePos);
-            this.Controls.Add(this.buttonStop);
-            this.Controls.Add(this.buttonDown);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.buttonUp);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(477, 436);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "Simulator";
+            this.Text = "Simulator";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,5 +357,9 @@
         private System.Windows.Forms.TextBox mVDC_Output;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelaxles;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -51,5 +51,10 @@ namespace roststyrn
                 return true;
             return false;
         }
+
+        public void Stop()
+        {
+            targetPos = currentPos;
+        }
     }
 }
