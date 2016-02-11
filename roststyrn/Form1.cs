@@ -35,9 +35,13 @@ namespace roststyrn
             gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             grammar = new Grammar(gBuilder);
-            recEngine.LoadGrammarAsync(grammar);
-            recEngine.SetInputToDefaultAudioDevice();
-            recEngine.SpeechRecognized += recEngine_SpeechRecognized;
+            try
+            {
+                recEngine.LoadGrammarAsync(grammar);
+                recEngine.SetInputToDefaultAudioDevice();
+                recEngine.SpeechRecognized += recEngine_SpeechRecognized;
+            }
+            catch (UnauthorizedAccessException) { }
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
         }
@@ -90,7 +94,11 @@ namespace roststyrn
             if ((keyData == (Keys.Control | Keys.R)) && asyncOn == false)
             {
                 label2.Text = "Status: ON";
-                recEngine.RecognizeAsync(RecognizeMode.Multiple);
+                try
+                {
+                    recEngine.RecognizeAsync(RecognizeMode.Multiple);
+                }
+                catch (NullReferenceException) { }
                 asyncOn = true;
                 return true;
             }
