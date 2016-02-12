@@ -62,6 +62,7 @@ namespace roststyrn
             {
                 if(axles[i].id == ID) {
                     currentAxle = axles[i];
+                    break;
                 }
             }
             if(target != -1)    // dont set target if target is -1,  used for stop command, change this later.
