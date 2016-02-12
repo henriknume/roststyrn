@@ -7,32 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Speech.Recognition;
+using Microsoft.Speech.Recognition;
 
 
 namespace roststyrn
 {
     public partial class Form1 : Form
     {
-        private SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
+        private SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("sv-SE"));
         private Choices commands;
         private GrammarBuilder gBuilder;
         private Grammar grammar;
         private bool asyncOn;
         private Simulator sim;
-
+        private bool newInput;
         public Form1()
         {
             InitializeComponent();
             commands = new Choices();
-            commands.Add(new string[] { "table up",
-                                        "table down",
-                                        "table stop",
-                                        "screen closer",
-                                        "screen back",
-                                        "screen stop",
-                                         "stop" });
+            commands.Add(new string[] { "bord upp",
+                                        "bord ner",
+                                        "skärm närmre",
+                                        "skärm bakåt",
+                                        "stopp" });
             gBuilder = new GrammarBuilder();
+            gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
             gBuilder.Append(commands);
             grammar = new Grammar(gBuilder);
             try
@@ -47,6 +46,7 @@ namespace roststyrn
             }
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
+            
         }
 
 
@@ -64,23 +64,17 @@ namespace roststyrn
                 return;
             switch (e.Result.Text)
             {
-                case "table up":
+                case "bord upp":
                     sim.SendAxleMoveCommand(0, 80, 100);
                     break;
-                case "table down":
+                case "bord ner":
                     sim.SendAxleMoveCommand(0, 20, 100);
                     break;
-                case "table stop":
-                    sim.SendAxleStopCommand(0);
-                    break;
-                case "screen closer":
+                case "skärm närmre":
                     sim.SendAxleMoveCommand(1, 50, 100);
                     break;
-                case "screen back":
+                case "skärm bakåt":
                     sim.SendAxleMoveCommand(1, 10, 100);
-                    break;
-                case "screen stop":
-                    sim.SendAxleStopCommand(1);
                     break;
                 case "stop":
                     sim.SendAxleStopCommand(0);
@@ -89,7 +83,7 @@ namespace roststyrn
                     recEngine.RecognizeAsyncStop();
                     break;
             }
-
+            
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -114,6 +108,8 @@ namespace roststyrn
 
         void Form1_KeyUp(object sender, KeyEventArgs e)
         {
+            if (asyncOn == false)
+                return; 
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
                 label2.Text = "Status: OFF";
