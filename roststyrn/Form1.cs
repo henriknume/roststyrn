@@ -59,7 +59,7 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
+            //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
             if (sim == null)
                 return;
             switch (e.Result.Text)
