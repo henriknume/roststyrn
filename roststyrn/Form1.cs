@@ -41,7 +41,10 @@ namespace roststyrn
                 recEngine.SetInputToDefaultAudioDevice();
                 recEngine.SpeechRecognized += recEngine_SpeechRecognized;
             }
-            catch (UnauthorizedAccessException) { }
+            catch (UnauthorizedAccessException e) {
+                Console.WriteLine("Error: UnauthorizedAccessException");
+                Console.WriteLine(e.ToString());
+            }
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
         }
@@ -98,7 +101,10 @@ namespace roststyrn
                 {
                     recEngine.RecognizeAsync(RecognizeMode.Multiple);
                 }
-                catch (NullReferenceException) { }
+                catch (NullReferenceException e) {
+                    Console.WriteLine("Error: NullReferenceException");
+                    Console.WriteLine(e.ToString());
+                }
                 asyncOn = true;
                 return true;
             }

@@ -280,9 +280,9 @@
             this.groupBox1.Controls.Add(this.LightCheckOn);
             this.groupBox1.Controls.Add(this.WarmCheck);
             this.groupBox1.Controls.Add(this.LightCheckOff);
-            this.groupBox1.Location = new System.Drawing.Point(17, 289);
+            this.groupBox1.Location = new System.Drawing.Point(17, 322);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(450, 131);
+            this.groupBox1.Size = new System.Drawing.Size(521, 131);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             // 
@@ -301,7 +301,7 @@
             this.groupBox2.Controls.Add(this.label2AxlePos);
             this.groupBox2.Location = new System.Drawing.Point(17, 65);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(450, 218);
+            this.groupBox2.Size = new System.Drawing.Size(521, 218);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             // 
@@ -319,7 +319,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 436);
+            this.ClientSize = new System.Drawing.Size(555, 486);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
