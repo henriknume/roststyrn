@@ -59,26 +59,26 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
+            label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
             if (sim == null)
                 return;
             switch (e.Result.Text)
             {
                 case "bord upp":
-                    sim.SendAxleMoveCommand(0, 80, 100);
+                    sim.SendAxleMoveCommand(1, 80, 100);
                     break;
                 case "bord ner":
-                    sim.SendAxleMoveCommand(0, 20, 100);
+                    sim.SendAxleMoveCommand(1, 20, 100);
                     break;
                 case "skärm närmre":
-                    sim.SendAxleMoveCommand(1, 50, 100);
+                    sim.SendAxleMoveCommand(2, 50, 100);
                     break;
                 case "skärm bakåt":
-                    sim.SendAxleMoveCommand(1, 10, 100);
+                    sim.SendAxleMoveCommand(2, 10, 100);
                     break;
                 case "stop":
-                    sim.SendAxleStopCommand(0);
                     sim.SendAxleStopCommand(1);
+                    sim.SendAxleStopCommand(2);
                     label2.Text = "Status: OFF";
                     recEngine.RecognizeAsyncStop();
                     break;

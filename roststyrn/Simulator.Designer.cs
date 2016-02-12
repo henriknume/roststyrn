@@ -52,6 +52,20 @@
             this.labelaxles = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10AxlePos = new System.Windows.Forms.Label();
+            this.progressBar10 = new System.Windows.Forms.ProgressBar();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label5AxlePos = new System.Windows.Forms.Label();
+            this.progressBar5 = new System.Windows.Forms.ProgressBar();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label4AxlePos = new System.Windows.Forms.Label();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3AxlePos = new System.Windows.Forms.Label();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -108,18 +122,18 @@
             this.label1AxlePos.AutoSize = true;
             this.label1AxlePos.Location = new System.Drawing.Point(7, 49);
             this.label1AxlePos.Name = "label1AxlePos";
-            this.label1AxlePos.Size = new System.Drawing.Size(84, 13);
+            this.label1AxlePos.Size = new System.Drawing.Size(61, 13);
             this.label1AxlePos.TabIndex = 5;
-            this.label1AxlePos.Text = "Axle ID #1  Pos:";
+            this.label1AxlePos.Text = "ID #1  Pos:";
             // 
             // label2AxlePos
             // 
             this.label2AxlePos.AutoSize = true;
             this.label2AxlePos.Location = new System.Drawing.Point(7, 135);
             this.label2AxlePos.Name = "label2AxlePos";
-            this.label2AxlePos.Size = new System.Drawing.Size(84, 13);
+            this.label2AxlePos.Size = new System.Drawing.Size(58, 13);
             this.label2AxlePos.TabIndex = 6;
-            this.label2AxlePos.Text = "Axle ID #2  Pos:";
+            this.label2AxlePos.Text = "ID #2 Pos:";
             // 
             // buttonStop2
             // 
@@ -280,7 +294,7 @@
             this.groupBox1.Controls.Add(this.LightCheckOn);
             this.groupBox1.Controls.Add(this.WarmCheck);
             this.groupBox1.Controls.Add(this.LightCheckOff);
-            this.groupBox1.Location = new System.Drawing.Point(17, 322);
+            this.groupBox1.Location = new System.Drawing.Point(17, 341);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(521, 131);
             this.groupBox1.TabIndex = 22;
@@ -288,6 +302,20 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label10AxlePos);
+            this.groupBox2.Controls.Add(this.progressBar10);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label5AxlePos);
+            this.groupBox2.Controls.Add(this.progressBar5);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label4AxlePos);
+            this.groupBox2.Controls.Add(this.progressBar4);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label3AxlePos);
+            this.groupBox2.Controls.Add(this.progressBar3);
             this.groupBox2.Controls.Add(this.buttonUp);
             this.groupBox2.Controls.Add(this.progressBar1);
             this.groupBox2.Controls.Add(this.labelaxles);
@@ -301,9 +329,131 @@
             this.groupBox2.Controls.Add(this.label2AxlePos);
             this.groupBox2.Location = new System.Drawing.Point(17, 65);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(521, 218);
+            this.groupBox2.Size = new System.Drawing.Size(521, 261);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(393, 197);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Monitor angle";
+            // 
+            // label10AxlePos
+            // 
+            this.label10AxlePos.AutoSize = true;
+            this.label10AxlePos.Location = new System.Drawing.Point(292, 197);
+            this.label10AxlePos.Name = "label10AxlePos";
+            this.label10AxlePos.Size = new System.Drawing.Size(67, 13);
+            this.label10AxlePos.TabIndex = 38;
+            this.label10AxlePos.Text = "ID #10  Pos:";
+            // 
+            // progressBar10
+            // 
+            this.progressBar10.Location = new System.Drawing.Point(295, 213);
+            this.progressBar10.Name = "progressBar10";
+            this.progressBar10.Size = new System.Drawing.Size(200, 24);
+            this.progressBar10.TabIndex = 37;
+            this.progressBar10.Value = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(393, 147);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(73, 13);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "CLOV (heigth)";
+            // 
+            // label5AxlePos
+            // 
+            this.label5AxlePos.AutoSize = true;
+            this.label5AxlePos.Location = new System.Drawing.Point(292, 147);
+            this.label5AxlePos.Name = "label5AxlePos";
+            this.label5AxlePos.Size = new System.Drawing.Size(61, 13);
+            this.label5AxlePos.TabIndex = 35;
+            this.label5AxlePos.Text = "ID #5  Pos:";
+            // 
+            // progressBar5
+            // 
+            this.progressBar5.Location = new System.Drawing.Point(295, 163);
+            this.progressBar5.Name = "progressBar5";
+            this.progressBar5.Size = new System.Drawing.Size(200, 24);
+            this.progressBar5.TabIndex = 34;
+            this.progressBar5.Value = 1;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(393, 98);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 13);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "CLOV (depth)";
+            // 
+            // label4AxlePos
+            // 
+            this.label4AxlePos.AutoSize = true;
+            this.label4AxlePos.Location = new System.Drawing.Point(292, 98);
+            this.label4AxlePos.Name = "label4AxlePos";
+            this.label4AxlePos.Size = new System.Drawing.Size(61, 13);
+            this.label4AxlePos.TabIndex = 32;
+            this.label4AxlePos.Text = "ID #4  Pos:";
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.Location = new System.Drawing.Point(295, 114);
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(200, 24);
+            this.progressBar4.TabIndex = 31;
+            this.progressBar4.Value = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(145, 135);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(102, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Monitor rack (depth)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(145, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "Bordsskiva";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(393, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 13);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Monitor rack (height)";
+            // 
+            // label3AxlePos
+            // 
+            this.label3AxlePos.AutoSize = true;
+            this.label3AxlePos.Location = new System.Drawing.Point(292, 49);
+            this.label3AxlePos.Name = "label3AxlePos";
+            this.label3AxlePos.Size = new System.Drawing.Size(61, 13);
+            this.label3AxlePos.TabIndex = 27;
+            this.label3AxlePos.Text = "ID #3  Pos:";
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.Location = new System.Drawing.Point(295, 65);
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(200, 24);
+            this.progressBar3.TabIndex = 22;
+            this.progressBar3.Value = 1;
             // 
             // label3
             // 
@@ -319,7 +469,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 486);
+            this.ClientSize = new System.Drawing.Size(555, 489);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -361,5 +511,19 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label10AxlePos;
+        private System.Windows.Forms.ProgressBar progressBar10;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label5AxlePos;
+        private System.Windows.Forms.ProgressBar progressBar5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label4AxlePos;
+        private System.Windows.Forms.ProgressBar progressBar4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3AxlePos;
+        private System.Windows.Forms.ProgressBar progressBar3;
     }
 }
