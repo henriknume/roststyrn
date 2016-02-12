@@ -76,7 +76,7 @@ namespace roststyrn
                 case "skärm bakåt":
                     sim.SendAxleMoveCommand(1, 10, 100);
                     break;
-                case "stop":
+                case "stopp":
                     sim.SendAxleStopCommand(0);
                     sim.SendAxleStopCommand(1);
                     label2.Text = "Status: OFF";
