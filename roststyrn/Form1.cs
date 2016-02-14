@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -59,7 +60,8 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
+         
+            //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
             if (sim == null)
                 return;
             switch (e.Result.Text)
@@ -76,10 +78,10 @@ namespace roststyrn
                 case "skärm bakåt":
                     sim.SendAxleMoveCommand(2, 10, 100);
                     break;
-                case "stop":
+                case "stopp":
                     sim.SendAxleStopCommand(1);
                     sim.SendAxleStopCommand(2);
-                    label2.Text = "Status: OFF";
+                  //  label2.Text = "Status: OFF";
                     recEngine.RecognizeAsyncStop();
                     break;
             }
