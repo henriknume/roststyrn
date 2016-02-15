@@ -22,15 +22,22 @@ namespace roststyrn
         private bool asyncOn;
         private Simulator sim;
         private bool newInput;
+        private string time = DateTime.Now.ToString();
+        private int AudioLevel { get; }
         public Form1()
         {
+            printEngineInfo(); //prints information about the recEngine - useful for testing when we change language
+
             InitializeComponent();
             commands = new Choices();
             commands.Add(new string[] { "bord upp",
                                         "bord ner",
                                         "skärm närmre",
                                         "skärm bakåt",
-                                        "stopp" });
+                                        "stopp",
+                                        "vad är klockan",
+                                        "klockan",
+                                                     });
             gBuilder = new GrammarBuilder();
             gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
             gBuilder.Append(commands);
@@ -47,7 +54,12 @@ namespace roststyrn
             }
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
+
+
+
             
+
+
         }
 
 
@@ -58,6 +70,8 @@ namespace roststyrn
 
         }
 
+    
+
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
          
@@ -67,9 +81,11 @@ namespace roststyrn
             switch (e.Result.Text)
             {
                 case "bord upp":
+                    Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
                     sim.SendAxleMoveCommand(1, 80, 100);
                     break;
                 case "bord ner":
+                    Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
                     sim.SendAxleMoveCommand(1, 20, 100);
                     break;
                 case "skärm närmre":
@@ -84,8 +100,17 @@ namespace roststyrn
                   //  label2.Text = "Status: OFF";
                     recEngine.RecognizeAsyncStop();
                     break;
+
+
+                //trött på att kolla nere i högrna hörnet?
+                case "vad är klockan":
+                case "klockan":
+                    (new System.Threading.Thread(CloseIt)).Start();
+                    MessageBox.Show(string.Format("Datum och tid är {0}", time));
+                    break;
+
             }
-            
+
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -125,6 +150,12 @@ namespace roststyrn
 
         }
 
+        public void CloseIt()
+        {
+            System.Threading.Thread.Sleep(5000);
+            SendKeys.SendWait(" ");
+        }
+
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -133,6 +164,18 @@ namespace roststyrn
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void printEngineInfo()
+        {
+
+            using (SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine())
+            {
+                Console.WriteLine("Information for the current speech recognition engine:");
+                Console.WriteLine("  Name: {0}", recognizer.RecognizerInfo.Name);
+                Console.WriteLine("  Culture: {0}", recognizer.RecognizerInfo.Culture.ToString());
+                Console.WriteLine("  Description: {0}", recognizer.RecognizerInfo.Description);
+            }
         }
 
         private void startSimBtn_Click(object sender, EventArgs e)
