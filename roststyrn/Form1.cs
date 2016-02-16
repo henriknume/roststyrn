@@ -37,6 +37,8 @@ namespace roststyrn
                                         "stopp",
                                         "vad är klockan",
                                         "klockan",
+                                        "öppna chrome",
+                                        "öppna notepad",
                                                      });
             gBuilder = new GrammarBuilder();
             gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
@@ -54,10 +56,6 @@ namespace roststyrn
             }
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
-
-
-
-            
 
 
         }
@@ -102,13 +100,18 @@ namespace roststyrn
                     break;
 
 
-                //trött på att kolla nere i högrna hörnet?
+               /* case "öppna chrome":
+                    Process.Start("chrome.exe", "http:\\www.google.com");
+                    break;
+                    */
+                case "öppna notepad":
+                    Process.Start("notepad.exe");
+                    break;
                 case "vad är klockan":
                 case "klockan":
                     (new System.Threading.Thread(CloseIt)).Start();
                     MessageBox.Show(string.Format("Datum och tid är {0}", time));
                     break;
-
             }
 
         }
@@ -180,7 +183,8 @@ namespace roststyrn
 
         private void startSimBtn_Click(object sender, EventArgs e)
         {
-            if(sim == null) //only able to create 1
+            this.TopMost = true;
+            if (sim == null) //only able to create 1
                 sim = new Simulator();
             sim.Show();
         }
