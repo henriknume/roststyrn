@@ -11,8 +11,16 @@ namespace roststyrn
         public int id;
         public int currentPos;
         int targetPos;
-        int min = 1;
+        int min = 0;
         int max;
+
+        public Axle(int id, int currentPos, int maxPos)
+        {
+            this.id = id;
+            this.currentPos = currentPos;
+            this.targetPos = currentPos;
+            this.max = maxPos;
+        }
 
         public Axle(int id, int currentPos, int targetPos, int maxPos)
         {

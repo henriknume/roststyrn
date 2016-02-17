@@ -24,8 +24,12 @@ namespace roststyrn
         {
             InitializeComponent();
             axles = new List<Axle>();
-            axles.Add(new Axle(0, 1, 1, 100));
-            axles.Add(new Axle(1, 1, 1, 100));
+            axles.Add(new Axle(1, 0, 650)); //last argument is real max pos for all axles
+            axles.Add(new Axle(2, 0, 150));
+            axles.Add(new Axle(3, 0, 200));
+            axles.Add(new Axle(4, 0, 300));
+            axles.Add(new Axle(5, 0, 650));
+            axles.Add(new Axle(10, 0, 24));
         }
 
         public void SendAxleMoveCommand(int ID, int pos, int speed)
@@ -51,14 +55,21 @@ namespace roststyrn
             t1.Start();
         }
 
-        private void MoveAxles(int id, int target)
+        private void MoveAxles(int ID, int target)
         {
-            Console.WriteLine("Table moving...");
+            Axle currentAxle = null;
+            for(int i = 0; i < axles.Count ; i++)
+            {
+                if(axles[i].id == ID) {
+                    currentAxle = axles[i];
+                }
+            }
             if(target != -1)    // dont set target if target is -1,  used for stop command, change this later.
             {
-                axles[id].SetTargetPos(target);  
+                currentAxle.SetTargetPos(target);  
             }
-                
+
+            Console.WriteLine("Table moving...");
             bool running = true;
             while (running)
             {
@@ -84,10 +95,22 @@ namespace roststyrn
         private void UpdateProgressBar()
         {
             progressBar1.Value = axles[0].currentPos;
-            label1AxlePos.Text = "Axle ID #1  Pos:: " + axles[0].currentPos;
+            label1AxlePos.Text = "ID #1  Pos: " + axles[0].currentPos;
 
             progressBar2.Value = axles[1].currentPos;
-            label2AxlePos.Text = "Axle ID #1  Pos:: " + axles[1].currentPos;
+            label2AxlePos.Text = "ID #2  Pos: " + axles[1].currentPos;
+
+            progressBar3.Value = axles[2].currentPos;
+            label3AxlePos.Text = "ID #3  Pos: " + axles[2].currentPos;
+
+            progressBar4.Value = axles[3].currentPos;
+            label4AxlePos.Text = "ID #4  Pos: " + axles[3].currentPos;
+
+            progressBar5.Value = axles[4].currentPos;
+            label5AxlePos.Text = "ID #5  Pos: " + axles[4].currentPos;
+
+            progressBar10.Value = axles[5].currentPos;
+            label10AxlePos.Text = "ID #10  Pos: " + axles[5].currentPos;
         }
 
         private void WorkFinished()
@@ -102,38 +125,38 @@ namespace roststyrn
         private void buttonUp_Click(object sender, EventArgs e)
         {
             buttonStop.Enabled = true;
-            SendAxleMoveCommand(0, 80, 100);
+            SendAxleMoveCommand(1, 80, 100);
 
         }
 
         private void buttonDown_Click(object sender, EventArgs e)
         {
             buttonStop.Enabled = true;
-            SendAxleMoveCommand(0, 10, 100);
+            SendAxleMoveCommand(1, 10, 100);
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
             buttonStop.Enabled = false;
-            SendAxleStopCommand(0);
+            SendAxleStopCommand(1);
         }
 
         private void buttonUp2_Click(object sender, EventArgs e)
         {
             buttonStop2.Enabled = true;
-            SendAxleMoveCommand(1, 80, 100);
+            SendAxleMoveCommand(2, 80, 100);
         }
 
         private void buttonDown2_Click(object sender, EventArgs e)
         {
             buttonStop2.Enabled = true;
-            SendAxleMoveCommand(1, 10, 100);
+            SendAxleMoveCommand(2, 10, 100);
         }
 
         private void buttonStop2_Click(object sender, EventArgs e)
         {
             buttonStop2.Enabled = false;
-            SendAxleStopCommand(1);
+            SendAxleStopCommand(2);
         }
 
 
