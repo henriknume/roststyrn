@@ -16,9 +16,9 @@ namespace roststyrn
     public partial class Form1 : Form
     {
         private SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("sv-SE"));
-        private Choices commands;
-        private GrammarBuilder gBuilder;
-        private Grammar grammar;
+        private Choices svCommands;
+        private GrammarBuilder svGBuilder;
+        private Grammar svGrammar;
         private bool asyncOn;
         private Simulator sim;
         private bool newInput;
@@ -26,11 +26,13 @@ namespace roststyrn
         private int AudioLevel { get; }
         public Form1()
         {
+            
+
             printEngineInfo(); //prints information about the recEngine - useful for testing when we change language
 
             InitializeComponent();
-            commands = new Choices();
-            commands.Add(new string[] { "bord upp",
+            svCommands = new Choices();
+            svCommands.Add(new string[] { "bord upp",
                                         "bord ner",
                                         "skärm närmre",
                                         "skärm bakåt",
@@ -40,13 +42,13 @@ namespace roststyrn
                                         "öppna chrome",
                                         "öppna notepad",
                                                      });
-            gBuilder = new GrammarBuilder();
-            gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
-            gBuilder.Append(commands);
-            grammar = new Grammar(gBuilder);
+            svGBuilder = new GrammarBuilder();
+            svGBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
+            svGBuilder.Append(svCommands);
+            svGrammar = new Grammar(svGBuilder);
             try
             {
-                recEngine.LoadGrammarAsync(grammar);
+                recEngine.LoadGrammarAsync(svGrammar);
                 recEngine.SetInputToDefaultAudioDevice();
                 recEngine.SpeechRecognized += recEngine_SpeechRecognized;
             }
@@ -57,7 +59,7 @@ namespace roststyrn
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
 
-
+            langBox.SelectedIndex = 0;
         }
 
 
@@ -188,6 +190,18 @@ namespace roststyrn
             sim = new Simulator();
             sim.Show();
             this.TopMost = true;
+        }
+
+        private void langBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(langBox.Text == "Svenska")
+            {
+                
+            }
+            else if (langBox.Text == "Engelska")
+            {
+
+            }
         }
     }
 }

@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.startSimBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.langBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -76,11 +77,24 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Control";
             // 
+            // langBox
+            // 
+            this.langBox.FormattingEnabled = true;
+            this.langBox.Items.AddRange(new object[] {
+            "Svenska",
+            "English"});
+            this.langBox.Location = new System.Drawing.Point(53, 218);
+            this.langBox.Name = "langBox";
+            this.langBox.Size = new System.Drawing.Size(121, 21);
+            this.langBox.TabIndex = 6;
+            this.langBox.SelectedIndexChanged += new System.EventHandler(this.langBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 200);
+            this.ClientSize = new System.Drawing.Size(284, 294);
+            this.Controls.Add(this.langBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.startSimBtn);
             this.Controls.Add(this.label2);
@@ -88,7 +102,6 @@
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "VoiceControl";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,6 +112,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button startSimBtn;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox langBox;
     }
 }
 
