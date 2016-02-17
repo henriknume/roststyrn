@@ -82,8 +82,8 @@
             this.langBox.FormattingEnabled = true;
             this.langBox.Items.AddRange(new object[] {
             "Svenska",
-            "English"});
-            this.langBox.Location = new System.Drawing.Point(53, 218);
+            "Engelska"});
+            this.langBox.Location = new System.Drawing.Point(82, 229);
             this.langBox.Name = "langBox";
             this.langBox.Size = new System.Drawing.Size(121, 21);
             this.langBox.TabIndex = 6;

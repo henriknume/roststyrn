@@ -74,7 +74,7 @@ namespace roststyrn
             }
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
-
+            langBox.SelectedIndex = 0;
 
         }
 
@@ -99,43 +99,56 @@ namespace roststyrn
                 Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
                 sim.SendAxleMoveCommand(1, 80, 100);
             }
-            if(e.Result.Text.Equals(linearray[1])){
+            else if(e.Result.Text.Equals(linearray[1])){
                 Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
                 sim.SendAxleMoveCommand(1, 20, 100);
             }
-            if (e.Result.Text.Equals(linearray[2]))
+            else if (e.Result.Text.Equals(linearray[2]))
             {
                 Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                sim.SendAxleMoveCommand(1, 20, 100);
+                sim.SendAxleMoveCommand(2, 50, 100);
             }
-        /*    switch (e.Result.Text)
+            else if (e.Result.Text.Equals(linearray[3]))
             {
-                case "bord upp":
-                    Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                    sim.SendAxleMoveCommand(1, 80, 100);
-                    break;
-                case "bord ner":
-                    Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                    sim.SendAxleMoveCommand(1, 20, 100);
-                    break;
-                case "skärm närmre":
-                    sim.SendAxleMoveCommand(2, 50, 100);
-                    break;
-                case "skärm bakåt":
-                    sim.SendAxleMoveCommand(2, 10, 100);
-                    break;
-                case "stopp":
-                    sim.SendAxleStopCommand(1);
-                    sim.SendAxleStopCommand(2);
-                  //  label2.Text = "Status: OFF";
-                    recEngine.RecognizeAsyncStop();
-                    break;
+                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
+                sim.SendAxleMoveCommand(2, 10, 100);
+            }
+            else if (e.Result.Text.Equals(linearray[4]))
+            {
+                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
+                sim.SendAxleStopCommand(1);
+                sim.SendAxleStopCommand(2);
+                //  label2.Text = "Status: OFF";
+                recEngine.RecognizeAsyncStop();
+            }
+            /*    switch (e.Result.Text)
+                {
+                    case "bord upp":
+                        Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
+                        sim.SendAxleMoveCommand(1, 80, 100);
+                        break;
+                    case "bord ner":
+                        Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
+                        sim.SendAxleMoveCommand(1, 20, 100);
+                        break;
+                    case "skärm närmre":
+                        sim.SendAxleMoveCommand(2, 50, 100);
+                        break;
+                    case "skärm bakåt":
+                        sim.SendAxleMoveCommand(2, 10, 100);
+                        break;
+                    case "stopp":
+                        sim.SendAxleStopCommand(1);
+                        sim.SendAxleStopCommand(2);
+                      //  label2.Text = "Status: OFF";
+                        recEngine.RecognizeAsyncStop();
+                        break;
 
-            */
-               /* case "öppna chrome":
-                    Process.Start("chrome.exe", "http:\\www.google.com");
-                    break;
-                    */
+                */
+            /* case "öppna chrome":
+                 Process.Start("chrome.exe", "http:\\www.google.com");
+                 break;
+                 */
             /*    case "öppna notepad":
                     Process.Start("notepad.exe");
                     break;
@@ -220,6 +233,18 @@ namespace roststyrn
             sim = new Simulator();
             sim.Show();
             this.TopMost = true;
+        }
+
+        private void langBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(langBox.Text == "Svenska")
+            {
+
+            }
+            else if (langBox.Text == "Engelska")
+            {
+
+            }
         }
     }
 }
