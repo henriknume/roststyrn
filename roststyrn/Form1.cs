@@ -17,50 +17,52 @@ namespace roststyrn
     public partial class Form1 : Form
     {
         private SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("sv-SE"));
-        private Choices commands;
+        private Choices choices;
         private GrammarBuilder gBuilder;
         private Grammar grammar;
         private bool asyncOn;
         private Simulator sim;
         private bool newInput;
         private string time = DateTime.Now.ToString();
-        private string[] linearray;
+
         //private int AudioLevel { get; }
         public Form1()
         {
             printEngineInfo(); //prints information about the recEngine - useful for testing when we change language
 
             InitializeComponent();
-            
 
-            try
+
+
+            /*  commands.Add(new string[] { "bord upp",
+                                          "bord ner",
+                                          "skärm närmre",
+                                          "skärm bakåt",
+                                          "stopp",
+                                          "vad är klockan",
+                                          "klockan",
+                                          "öppna chrome",
+                                          "öppna notepad",
+                                                       });*/
+
+            VoiceCommands.Init("choose_language_here", "default_commands_swe.txt");
+            /*
+            Console.WriteLine("========= GetAllCommands()===========");
+            foreach (string s in VoiceCommands.GetAllCommands())
             {
-                linearray = File.ReadAllLines("COMMANDS.txt");
-                foreach(var line in linearray){
-                    Console.WriteLine(line);
-                }
-
+                
+                Console.WriteLine(s);
+                
             }
-            catch(SystemException e){
-                Console.Write(e.ToString());
-            }
-            
-            commands = new Choices();
-            commands.Add(linearray);
+            Console.WriteLine("==============================");
+            */
 
-          /*  commands.Add(new string[] { "bord upp",
-                                        "bord ner",
-                                        "skärm närmre",
-                                        "skärm bakåt",
-                                        "stopp",
-                                        "vad är klockan",
-                                        "klockan",
-                                        "öppna chrome",
-                                        "öppna notepad",
-                                                     });*/
+            choices = new Choices();
+            choices.Add(VoiceCommands.GetAllCommands());
+
             gBuilder = new GrammarBuilder();
             gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
-            gBuilder.Append(commands);
+            gBuilder.Append(choices);
             grammar = new Grammar(gBuilder);
             try
             {
@@ -90,8 +92,18 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-         
+
+            string voiceInput = e.Result.Text;
+
+            if (VoiceCommands.Contains(voiceInput))
+            {
+                VoiceCommands.GetCommand(voiceInput).Send();
+            }
+
+
+            
             //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
+            /*
             if (sim == null)
                 return;
 
@@ -121,6 +133,7 @@ namespace roststyrn
                 //  label2.Text = "Status: OFF";
                 recEngine.RecognizeAsyncStop();
             }
+            */
             /*    switch (e.Result.Text)
                 {
                     case "bord upp":
@@ -245,6 +258,15 @@ namespace roststyrn
             {
 
             }
+        }
+
+        private void testSend_Click(object sender, EventArgs e)
+        {
+
+           
+
+            VoiceCommands.GetCommand("test_command").Send();
+
         }
     }
 }

@@ -33,6 +33,7 @@
             this.startSimBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.langBox = new System.Windows.Forms.ComboBox();
+            this.testSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -89,11 +90,22 @@
             this.langBox.TabIndex = 6;
             this.langBox.SelectedIndexChanged += new System.EventHandler(this.langBox_SelectedIndexChanged);
             // 
+            // testSend
+            // 
+            this.testSend.Location = new System.Drawing.Point(12, 259);
+            this.testSend.Name = "testSend";
+            this.testSend.Size = new System.Drawing.Size(75, 23);
+            this.testSend.TabIndex = 7;
+            this.testSend.Text = "testSend";
+            this.testSend.UseVisualStyleBackColor = true;
+            this.testSend.Click += new System.EventHandler(this.testSend_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 294);
+            this.Controls.Add(this.testSend);
             this.Controls.Add(this.langBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.startSimBtn);
@@ -113,6 +125,7 @@
         private System.Windows.Forms.Button startSimBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox langBox;
+        private System.Windows.Forms.Button testSend;
     }
 }
 

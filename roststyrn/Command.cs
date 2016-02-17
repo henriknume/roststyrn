@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace roststyrn
 {
-    abstract class Command
+    public abstract class Command
     {
 
         abstract public void Send();
     }
 
-    class AxleCommand : Command
+    public class AxleCommand : Command
     {
         private int ID;
         private int pos;
@@ -30,7 +30,7 @@ namespace roststyrn
         }
     }
 
-    class StopCommand : Command
+    public class StopCommand : Command
     {
         private int ID;
         public StopCommand(int ID)
@@ -44,7 +44,7 @@ namespace roststyrn
         }
     }
 
-    class LampCommand : Command
+    public class LampCommand : Command
     {
         private int ID;
         private int mVDC;
