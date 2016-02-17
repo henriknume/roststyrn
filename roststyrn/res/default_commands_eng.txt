@@ -1,0 +1,5 @@
+table up:AxleCommand,1,650,100
+table down:AxleCommand,1,0,100
+screen closer:AxleCommand,2,150,100
+screen back:AxleCommand,2,0,100
+stop:StopCommand,1

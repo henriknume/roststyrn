@@ -84,6 +84,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(10, 65);
+            this.progressBar1.Maximum = 650;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(237, 24);
             this.progressBar1.TabIndex = 1;
@@ -92,6 +93,7 @@
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(10, 151);
+            this.progressBar2.Maximum = 150;
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(237, 23);
             this.progressBar2.TabIndex = 2;
@@ -354,6 +356,7 @@
             // progressBar10
             // 
             this.progressBar10.Location = new System.Drawing.Point(295, 213);
+            this.progressBar10.Maximum = 24;
             this.progressBar10.Name = "progressBar10";
             this.progressBar10.Size = new System.Drawing.Size(200, 24);
             this.progressBar10.TabIndex = 37;
@@ -380,6 +383,7 @@
             // progressBar5
             // 
             this.progressBar5.Location = new System.Drawing.Point(295, 163);
+            this.progressBar5.Maximum = 650;
             this.progressBar5.Name = "progressBar5";
             this.progressBar5.Size = new System.Drawing.Size(200, 24);
             this.progressBar5.TabIndex = 34;
@@ -406,6 +410,7 @@
             // progressBar4
             // 
             this.progressBar4.Location = new System.Drawing.Point(295, 114);
+            this.progressBar4.Maximum = 300;
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(200, 24);
             this.progressBar4.TabIndex = 31;
@@ -450,6 +455,7 @@
             // progressBar3
             // 
             this.progressBar3.Location = new System.Drawing.Point(295, 65);
+            this.progressBar3.Maximum = 200;
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(200, 24);
             this.progressBar3.TabIndex = 22;

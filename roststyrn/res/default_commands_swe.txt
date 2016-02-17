@@ -1,0 +1,6 @@
+bord upp:AxleCommand,1,650,100
+bord ner:AxleCommand,1,0,100
+skärm framåt:AxleCommand,2,150,100
+skärm bakåt:AxleCommand,2,0,100
+stoppa bord:StopCommand,1
+stoppa skärm:StopCommand,2

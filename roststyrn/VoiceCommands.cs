@@ -11,13 +11,13 @@ namespace roststyrn
 
         //static Dictionary<string, List<Command>> allCommands = new Dictionary<string, List<Command>>();
         static Dictionary<string, Command> allCommands = new Dictionary<string, Command>();
+        static Simulator sim;
 
-
-        public static void Init(string lang, string filename)
+        public static void Init(Simulator sim, string filename)
         {
+            VoiceCommands.sim = sim;
             //for testing:
             //allCommands.Add("test_command", new AxleCommand(1, 60, 100) );
-
 
             //read all commands from database or file, and put them in allCommands
 
@@ -60,15 +60,15 @@ namespace roststyrn
 
             if(args[0] == "AxleCommand")
             {
-                command = new AxleCommand(Int32.Parse(args[1]), Int32.Parse(args[2]), Int32.Parse(args[3]));
+                command = new AxleCommand(Int32.Parse(args[1]), Int32.Parse(args[2]), Int32.Parse(args[3]), sim);
             }
             else if (args[0] == "StopCommand")
             {
-                command = new StopCommand(Int32.Parse(args[1]));
+                command = new StopCommand(Int32.Parse(args[1]), sim);
             }
             else if (args[0] == "LampCommand")
             {
-                command = new LampCommand(Int32.Parse(args[1]), Int32.Parse(args[2]));
+                command = new LampCommand(Int32.Parse(args[1]), Int32.Parse(args[2]), sim);
             }
 
             return command;

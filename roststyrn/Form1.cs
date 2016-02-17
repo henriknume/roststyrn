@@ -45,20 +45,28 @@ namespace roststyrn
                                           "öppna notepad",
                                                        });*/
 
-            VoiceCommands.Init("choose_language_here", "default_commands_swe.txt");
-            /*
+            if (sim != null)
+                sim.Close();
+            sim = new Simulator();
+            sim.Show();
+            this.TopMost = true;
+
+            VoiceCommands.Init(sim, "default_commands_swe.txt");
+            
             Console.WriteLine("========= GetAllCommands()===========");
             foreach (string s in VoiceCommands.GetAllCommands())
             {
-                
+
                 Console.WriteLine(s);
-                
+
             }
             Console.WriteLine("==============================");
-            */
+            
 
             choices = new Choices();
             choices.Add(VoiceCommands.GetAllCommands());
+
+
 
             gBuilder = new GrammarBuilder();
             gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
@@ -88,12 +96,14 @@ namespace roststyrn
 
         }
 
-    
+
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
 
             string voiceInput = e.Result.Text;
+
+            Console.WriteLine("==> Input recognized: " + voiceInput);
 
             if (VoiceCommands.Contains(voiceInput))
             {
@@ -101,7 +111,7 @@ namespace roststyrn
             }
 
 
-            
+
             //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
             /*
             if (sim == null)
@@ -197,7 +207,7 @@ namespace roststyrn
         void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if (asyncOn == false)
-                return; 
+                return;
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
                 label2.Text = "Status: OFF";
@@ -263,11 +273,7 @@ namespace roststyrn
         private void testSend_Click(object sender, EventArgs e)
         {
 
-           
-
-            VoiceCommands.GetCommand("test_command").Send();
 
         }
     }
 }
-

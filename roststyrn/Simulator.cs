@@ -44,9 +44,21 @@ namespace roststyrn
         {
             //stop all axles
             cancelWork = true;
-            try { Thread.Sleep(100); } catch (ThreadAbortException e) { Console.WriteLine(e.StackTrace); }
+            try { Thread.Sleep(150); } catch (ThreadAbortException e) { Console.WriteLine(e.StackTrace); }
+
             // stop axle with ID
-            axles[ID].Stop();
+            // GetAxle(ID).Stop();
+
+            Axle currAxle = null;
+            for (int i = 0; i < axles.Count; i++)
+            {
+                if (axles[i].id == ID)
+                {
+                    currAxle = axles[i];
+                    break;
+                }
+            }
+            currAxle.Stop();
 
             //start all again
             cancelWork = false;
@@ -55,15 +67,23 @@ namespace roststyrn
             t1.Start();
         }
 
-        private void MoveAxles(int ID, int target)
+        private Axle GetAxle(int ID)
         {
-            Axle currentAxle = null;
-            for(int i = 0; i < axles.Count ; i++)
+            Axle axle = null;
+            for (int i = 0; i < axles.Count; i++)
             {
-                if(axles[i].id == ID) {
-                    currentAxle = axles[i];
+                if (axles[i].id == ID)
+                {
+                    axle = axles[i];
+                    break;
                 }
             }
+            return axle;
+        }
+
+        private void MoveAxles(int ID, int target)
+        {
+            Axle currentAxle = GetAxle(ID);
             if(target != -1)    // dont set target if target is -1,  used for stop command, change this later.
             {
                 currentAxle.SetTargetPos(target);  
