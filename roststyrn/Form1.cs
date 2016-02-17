@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,14 +24,31 @@ namespace roststyrn
         private Simulator sim;
         private bool newInput;
         private string time = DateTime.Now.ToString();
-        private int AudioLevel { get; }
+        private string[] linearray;
+        //private int AudioLevel { get; }
         public Form1()
         {
             printEngineInfo(); //prints information about the recEngine - useful for testing when we change language
 
             InitializeComponent();
+            
+
+            try
+            {
+                linearray = File.ReadAllLines("COMMANDS.txt");
+                foreach(var line in linearray){
+                    Console.WriteLine(line);
+                }
+
+            }
+            catch(SystemException e){
+                Console.Write(e.ToString());
+            }
+            
             commands = new Choices();
-            commands.Add(new string[] { "bord upp",
+            commands.Add(linearray);
+
+          /*  commands.Add(new string[] { "bord upp",
                                         "bord ner",
                                         "skärm närmre",
                                         "skärm bakåt",
@@ -39,7 +57,7 @@ namespace roststyrn
                                         "klockan",
                                         "öppna chrome",
                                         "öppna notepad",
-                                                     });
+                                                     });*/
             gBuilder = new GrammarBuilder();
             gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
             gBuilder.Append(commands);
@@ -76,7 +94,21 @@ namespace roststyrn
             //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
             if (sim == null)
                 return;
-            switch (e.Result.Text)
+
+            if(e.Result.Text.Equals(linearray[0])){
+                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
+                sim.SendAxleMoveCommand(1, 80, 100);
+            }
+            if(e.Result.Text.Equals(linearray[1])){
+                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
+                sim.SendAxleMoveCommand(1, 20, 100);
+            }
+            if (e.Result.Text.Equals(linearray[2]))
+            {
+                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
+                sim.SendAxleMoveCommand(1, 20, 100);
+            }
+        /*    switch (e.Result.Text)
             {
                 case "bord upp":
                     Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
@@ -99,12 +131,12 @@ namespace roststyrn
                     recEngine.RecognizeAsyncStop();
                     break;
 
-
+            */
                /* case "öppna chrome":
                     Process.Start("chrome.exe", "http:\\www.google.com");
                     break;
                     */
-                case "öppna notepad":
+            /*    case "öppna notepad":
                     Process.Start("notepad.exe");
                     break;
                 case "vad är klockan":
@@ -112,7 +144,7 @@ namespace roststyrn
                     (new System.Threading.Thread(CloseIt)).Start();
                     MessageBox.Show(string.Format("Datum och tid är {0}", time));
                     break;
-            }
+            }*/
 
         }
 
