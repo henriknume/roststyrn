@@ -1,9 +1,9 @@
 bord upp
-"bord ner"
-"skärm närmre"
-"skärm bakåt"
-"stopp"
-"vad är klockan"
-"Klockan"
-"öppna chrome"
-"öppna notepad"
+bord ner
+skÃ¤rm nÃ¤rmre
+skÃ¤rm bakÃ¥t
+stopp
+vad Ã¤r klockan
+Klockan
+Ã¶ppna chrome
+Ã¶ppna notepad
