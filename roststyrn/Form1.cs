@@ -151,8 +151,8 @@ namespace roststyrn
             {
                 label2.Text = "Status: OFF";
                 if(sim != null) {
-                    sim.SendAxleStopCommand(0);
                     sim.SendAxleStopCommand(1);
+                    sim.SendAxleStopCommand(2);
                 }
                 recEngine.RecognizeAsyncStop();
                 asyncOn = false;
