@@ -49,16 +49,8 @@ namespace roststyrn
             // stop axle with ID
             // GetAxle(ID).Stop();
 
-            Axle currAxle = null;
-            for (int i = 0; i < axles.Count; i++)
-            {
-                if (axles[i].id == ID)
-                {
-                    currAxle = axles[i];
-                    break;
-                }
-            }
-            currAxle.Stop();
+            Axle currAxle = GetAxle(ID);
+            if ( currAxle!= null) currAxle.Stop();
 
             //start all again
             cancelWork = false;
@@ -89,7 +81,7 @@ namespace roststyrn
                 currentAxle.SetTargetPos(target);  
             }
 
-            Console.WriteLine("Table moving...");
+            //Console.WriteLine("Table moving...");
             bool running = true;
             while (running)
             {
@@ -109,7 +101,7 @@ namespace roststyrn
                 try { Thread.Sleep(100); } catch (ThreadAbortException e) { Console.WriteLine(e.StackTrace); }
             }
             this.Invoke(new VoidDelegate(WorkFinished));
-            Console.WriteLine("Table stopped.");
+            //Console.WriteLine("Table stopped.");
         }
 
         private void UpdateProgressBar()
