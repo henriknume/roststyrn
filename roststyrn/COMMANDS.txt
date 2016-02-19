@@ -1,0 +1,9 @@
+bord upp
+bord ner
+skärm närmre
+skärm bakåt
+stopp
+vad är klockan
+Klockan
+öppna chrome
+öppna notepad

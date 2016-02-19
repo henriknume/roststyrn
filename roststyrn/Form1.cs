@@ -97,6 +97,14 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+<<<<<<< HEAD
+=======
+
+            Console.WriteLine("####### Recognized input #########:" + e.Result.Text);
+            //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
+            if (sim == null)
+                return;
+>>>>>>> master
 
             string voiceInput = e.Result.Text;
 
