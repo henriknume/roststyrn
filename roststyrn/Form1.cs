@@ -11,71 +11,78 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Speech.Recognition;
 
-
 namespace roststyrn
 {
     public partial class Form1 : Form
     {
         private SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("sv-SE"));
-        private Choices commands;
+        private Choices choices;
         private GrammarBuilder gBuilder;
         private Grammar grammar;
         private bool asyncOn;
         private Simulator sim;
         private bool newInput;
         private string time = DateTime.Now.ToString();
-        private string[] linearray;
+
         //private int AudioLevel { get; }
         public Form1()
         {
             printEngineInfo(); //prints information about the recEngine - useful for testing when we change language
 
             InitializeComponent();
-            
 
-            try
+            /* starting the simulator first cause we need to pass refs to the commands*/
+            if (sim != null)
+                sim.Close();
+            sim = new Simulator();
+            sim.Show();
+            this.TopMost = true;
+
+            
+            VoiceCommands.Init(sim, "default_commands_swe.txt");
+
+            Console.WriteLine("\n----------- loading default commands ------------");
+            string[] allCommands = VoiceCommands.GetAllCommands();
+            if(allCommands.Length > 0)
             {
-                linearray = File.ReadAllLines("COMMANDS.txt");
-                foreach(var line in linearray){
-                    Console.WriteLine(line);
+                foreach (string s in allCommands)
+                {
+
+                    Console.WriteLine(s);
+
                 }
+                Console.WriteLine("---------------------------------------------------");
+                /* speech rec stuff, only start if there exists commands*/
+                Console.WriteLine("-starting SpeechRecognitionEngine");
+                choices = new Choices();
+                choices.Add(allCommands);
+                gBuilder = new GrammarBuilder();
+                gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
+                gBuilder.Append(choices);
+                grammar = new Grammar(gBuilder);
+                try
+                {
+                    recEngine.LoadGrammarAsync(grammar);
+                    recEngine.SetInputToDefaultAudioDevice();
+                    recEngine.SpeechRecognized += recEngine_SpeechRecognized;
+                }
+                catch (UnauthorizedAccessException e)
+                {
+                    Console.WriteLine("Error: UnauthorizedAccessException");
+                    Console.WriteLine(e.ToString());
+                }
+                asyncOn = false;
+                this.KeyUp += new KeyEventHandler(Form1_KeyUp);
+                langBox.SelectedIndex = 0;
 
             }
-            catch(SystemException e){
-                Console.Write(e.ToString());
+            else
+            {
+                Console.WriteLine("--no commands loaded, check resources files");
+                Console.WriteLine("---------------------------------------------------");
             }
             
-            commands = new Choices();
-            commands.Add(linearray);
-
-          /*  commands.Add(new string[] { "bord upp",
-                                        "bord ner",
-                                        "skärm närmre",
-                                        "skärm bakåt",
-                                        "stopp",
-                                        "vad är klockan",
-                                        "klockan",
-                                        "öppna chrome",
-                                        "öppna notepad",
-                                                     });*/
-            gBuilder = new GrammarBuilder();
-            gBuilder.Culture = new System.Globalization.CultureInfo("sv-SE");
-            gBuilder.Append(commands);
-            grammar = new Grammar(gBuilder);
-            try
-            {
-                recEngine.LoadGrammarAsync(grammar);
-                recEngine.SetInputToDefaultAudioDevice();
-                recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            }
-            catch (UnauthorizedAccessException e) {
-                Console.WriteLine("Error: UnauthorizedAccessException");
-                Console.WriteLine(e.ToString());
-            }
-            asyncOn = false;
-            this.KeyUp += new KeyEventHandler(Form1_KeyUp);
-            langBox.SelectedIndex = 0;
-
+           
         }
 
 
@@ -86,71 +93,34 @@ namespace roststyrn
 
         }
 
-    
+
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+<<<<<<< HEAD
+=======
 
             Console.WriteLine("####### Recognized input #########:" + e.Result.Text);
             //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
             if (sim == null)
                 return;
+>>>>>>> master
 
-            if(e.Result.Text.Equals(linearray[0])){
-                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                sim.SendAxleMoveCommand(1, 80, 100);
-            }
-            else if(e.Result.Text.Equals(linearray[1])){
-                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                sim.SendAxleMoveCommand(1, 20, 100);
-            }
-            else if (e.Result.Text.Equals(linearray[2]))
-            {
-                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                sim.SendAxleMoveCommand(2, 50, 100);
-            }
-            else if (e.Result.Text.Equals(linearray[3]))
-            {
-                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                sim.SendAxleMoveCommand(2, 10, 100);
-            }
-            else if (e.Result.Text.Equals(linearray[4]))
-            {
-                Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                sim.SendAxleStopCommand(1);
-                sim.SendAxleStopCommand(2);
-                //  label2.Text = "Status: OFF";
-                recEngine.RecognizeAsyncStop();
-            }
-            /*    switch (e.Result.Text)
-                {
-                    case "bord upp":
-                        Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                        sim.SendAxleMoveCommand(1, 80, 100);
-                        break;
-                    case "bord ner":
-                        Console.WriteLine("  Audio level: " + recEngine.AudioLevel);
-                        sim.SendAxleMoveCommand(1, 20, 100);
-                        break;
-                    case "skärm närmre":
-                        sim.SendAxleMoveCommand(2, 50, 100);
-                        break;
-                    case "skärm bakåt":
-                        sim.SendAxleMoveCommand(2, 10, 100);
-                        break;
-                    case "stopp":
-                        sim.SendAxleStopCommand(1);
-                        sim.SendAxleStopCommand(2);
-                      //  label2.Text = "Status: OFF";
-                        recEngine.RecognizeAsyncStop();
-                        break;
+            string voiceInput = e.Result.Text;
 
-                */
+            Console.WriteLine("========== Input recognized: ============>" + voiceInput);
+
+            if (VoiceCommands.Contains(voiceInput))
+            {
+                VoiceCommands.GetCommand(voiceInput).Send();
+      
+            }
+
             /* case "öppna chrome":
                  Process.Start("chrome.exe", "http:\\www.google.com");
                  break;
-                 */
-            /*    case "öppna notepad":
+           
+                case "öppna notepad":
                     Process.Start("notepad.exe");
                     break;
                 case "vad är klockan":
@@ -159,7 +129,6 @@ namespace roststyrn
                     MessageBox.Show(string.Format("Datum och tid är {0}", time));
                     break;
             }*/
-
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -185,13 +154,13 @@ namespace roststyrn
         void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if (asyncOn == false)
-                return; 
+                return;
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
                 label2.Text = "Status: OFF";
                 if(sim != null) {
-                    sim.SendAxleStopCommand(0);
                     sim.SendAxleStopCommand(1);
+                    sim.SendAxleStopCommand(2);
                 }
                 recEngine.RecognizeAsyncStop();
                 asyncOn = false;
@@ -247,6 +216,11 @@ namespace roststyrn
 
             }
         }
+
+        private void testSend_Click(object sender, EventArgs e)
+        {
+
+
+        }
     }
 }
-

@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Axle.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="VoiceCommands.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
