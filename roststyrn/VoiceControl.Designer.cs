@@ -33,6 +33,7 @@
             this.startSimBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.langBox = new System.Windows.Forms.ComboBox();
+            this.Customize_profile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -88,11 +89,22 @@
             this.langBox.TabIndex = 6;
             this.langBox.SelectedIndexChanged += new System.EventHandler(this.langBox_SelectedIndexChanged);
             // 
+            // Customize_profile
+            // 
+            this.Customize_profile.Location = new System.Drawing.Point(172, 109);
+            this.Customize_profile.Name = "Customize_profile";
+            this.Customize_profile.Size = new System.Drawing.Size(100, 23);
+            this.Customize_profile.TabIndex = 7;
+            this.Customize_profile.Text = "Customize_profile";
+            this.Customize_profile.UseVisualStyleBackColor = true;
+            this.Customize_profile.Click += new System.EventHandler(this.Customize_profile_Click);
+            // 
             // VoiceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 245);
+            this.Controls.Add(this.Customize_profile);
             this.Controls.Add(this.langBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.startSimBtn);
@@ -112,6 +124,7 @@
         private System.Windows.Forms.Button startSimBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox langBox;
+        private System.Windows.Forms.Button Customize_profile;
     }
 }
 

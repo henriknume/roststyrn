@@ -25,10 +25,13 @@ namespace roststyrn
 
         private void Change_Click(object sender, EventArgs e)
         {
-            //// need a check for Int, otherwise exception will be thrown if input is a string //////////
-            Customize.changePos(Int32.Parse(newPos.Text));
-            
-            
+            int tempPos = 0;
+            bool result = int.TryParse(newPos.Text, out tempPos); // check if String is numeric.. if true -> tempPos = newPos.Text
+            if (result)
+            {
+                Customize.changePos(tempPos);
+
+            }
         }
 
         private void Set_default_Click(object sender, EventArgs e)

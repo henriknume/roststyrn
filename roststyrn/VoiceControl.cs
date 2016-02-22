@@ -188,5 +188,11 @@ namespace roststyrn
                 Console.WriteLine(e.ToString());
             }
         }
+
+        private void Customize_profile_Click(object sender, EventArgs e)
+        {
+            var customize = new Customize_layout();
+            customize.Show();
+        }
     }
 }
