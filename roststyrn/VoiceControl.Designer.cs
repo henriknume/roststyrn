@@ -100,7 +100,7 @@
             this.testSend.UseVisualStyleBackColor = true;
             this.testSend.Click += new System.EventHandler(this.testSend_Click);
             // 
-            // Form1
+            // VoiceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -112,8 +112,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.KeyPreview = true;
-            this.Name = "Form1";
+            this.Name = "VoiceControl";
             this.Text = "VoiceControl";
+            this.Load += new System.EventHandler(this.VoiceControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -27,7 +27,6 @@ namespace roststyrn
         private GrammarBuilder engGBuilder;
         private Grammar engGrammar;
         private bool asyncOn;
-        private Simulator sim;
         private bool newInput;
         private string time = DateTime.Now.ToString();
 
@@ -35,40 +34,12 @@ namespace roststyrn
         public VoiceControl()
         {
 
-
             InitializeComponent();
-
-
-
-            Console.WriteLine("\n----------- loading default commands ------------");
-            string[] allCommands = VoiceCommands.GetAllCommands();
-            if(allCommands.Length > 0)
-            {
-                foreach (string s in allCommands)
-                {
-
-                    Console.WriteLine(s);
-
-                }
-                Console.WriteLine("---------------------------------------------------");
-                /* speech rec stuff, only start if there exists commands*/
-                Console.WriteLine("-starting SpeechRecognitionEngine");
-
-                InitSwe();
-                InitEng();
-                asyncOn = false;
-                this.KeyUp += new KeyEventHandler(Form1_KeyUp);
-                langBox.SelectedIndex = 0;
-
-
-            }
-            else
-            {
-                Console.WriteLine("--no commands loaded, check resources files");
-                Console.WriteLine("---------------------------------------------------");
-            }
-            
-           
+            InitSwe();
+            InitEng();
+            asyncOn = false;
+            this.KeyUp += new KeyEventHandler(Form1_KeyUp);
+            langBox.SelectedIndex = 0;      
         }
 
 
@@ -135,15 +106,16 @@ namespace roststyrn
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
                 label2.Text = "Status: OFF";
-                if(sim != null) {
-                    sim.SendAxleStopCommand(1);
-                    sim.SendAxleStopCommand(2);
-                }
+                
+                Simulator.GetInstance().SendAxleStopCommand(1);
+                Simulator.GetInstance().SendAxleStopCommand(2);
+                
                 curEngine.RecognizeAsyncStop();
                 asyncOn = false;
             }
 
         }
+
 
         public void CloseIt()
         {
@@ -171,10 +143,7 @@ namespace roststyrn
 
         private void startSimBtn_Click(object sender, EventArgs e)
         {
-            if (sim != null)
-                sim.Close();
-            sim = Simulator.GetInstance();
-            sim.Show();
+            Simulator.GetInstance().Show();
             this.TopMost = true;
         }
 
@@ -183,12 +152,14 @@ namespace roststyrn
             if(langBox.Text == "Svenska")
             {
                 curEngine = sweEngine;
+                Console.WriteLine("Svenska på");
             }
             else if (langBox.Text == "Engelska")
             {
                 curEngine = engEngine;
+                Console.WriteLine("Engelska på");
             }
-            printEngineInfo();
+            //printEngineInfo();
         }
 
         private void testSend_Click(object sender, EventArgs e)
@@ -244,5 +215,11 @@ namespace roststyrn
                 Console.WriteLine(e.ToString());
             }
         }
+
+        private void VoiceControl_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
