@@ -21,11 +21,23 @@ namespace roststyrn
         private static String[] shafts = new String[size];
         private static int[] positions = new int[size];
         private static int p, s = 0;
+        private static String tempNameOfShaft = "";       // sets to remember" when shaft already exist" -> to that existing shaft
 
         public static void changePos(int pos)
         {
-            positions[p] = pos;
-            p++;
+            if (0 < p && p <= size-1)
+            {
+                if (shafts.Length > positions.Length)
+                {
+                    positions[p] = pos;
+                    p++;
+                }
+                else {          // update already existing pos //
+
+                   int indexExistingPos = getPosForExistingShaft(tempNameOfShaft);
+                   positions[indexExistingPos] = pos;
+                }
+            }
         }
         public static void changeShaft(String nameOfShaft)
         {
@@ -34,15 +46,18 @@ namespace roststyrn
                 shafts[s] = nameOfShaft;
                 s++;
             }
+            else {
+                tempNameOfShaft = nameOfShaft;
+            }
         }
         public static void mergePosAndShafts()
-        {          // called by save button...........
+        {                                                               // called by save button...........
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < size - 1; i++)    
             {
                 if (shafts[i] == null || positions[i] == null) { break; }
-                if (isValid(shafts[i], positions[i]))
-                {    // check if valid "pos" for that specific "shaft"
+                if (isValid(shafts[i], positions[i]))             // check if valid "pos" for that specific "shaft"
+                {   
                     shafts_Pos.Add(shafts[i], positions[i]);
                 }
             }
@@ -51,8 +66,18 @@ namespace roststyrn
         }
         public static void updateUser(String User)     // called by save button
         {
-            user_Positions_Profile.Add(User, shafts_Pos);    // adds user to a dictionary with custom shaft positions
-            reset();  // reset position and shafts array for new updates for user profile...
+            if (! User.Equals("")) // not allowed to be blank..
+            {
+                if (user_Positions_Profile.ContainsKey(User))   // if key exist
+                {
+                    user_Positions_Profile[User] = shafts_Pos; // update key with the new value ....
+                }
+                else
+                {
+                    user_Positions_Profile.Add(User, shafts_Pos);   // adds new user to a dictionary with custom shaft positions
+                }                           
+            }
+            reset();             // reset position  shafts array for new updates for user profile...
         }
         public static void updateDeskConfig()
         {    // called by save button  .... // this is where updates are made  // 
@@ -87,7 +112,7 @@ namespace roststyrn
             }
         }
         public static bool isValid(String nameOfShaft, int pos)
-        { // needed .... check if pos is valid for that shaft
+        {            //  check if pos is valid for that shaft  //
 
             if (nameOfShaft.Equals("PosDeskUp"))
             {
@@ -122,7 +147,7 @@ namespace roststyrn
             else { return false; }
         }
         public static bool alreadyExist(String nameOfShaft)
-        { // checks if shaft already exists in array
+        {     // checks if shaft already exists in array  //
 
             foreach (var current in shafts)
             {
@@ -131,12 +156,27 @@ namespace roststyrn
             }
             return false;
         }
+        public static int getPosForExistingShaft(String name) {
+            
+            int count = 0;
+            for (int i = 0; i < shafts.Length; i++ )
+            {
+                if (shafts[i].Equals(name)) {
+                    count = i;
+                }
+            }
+            return count;
+        }
+
         public static void reset()
         {
 
             Array.Clear(shafts, 0, shafts.Length);
             Array.Clear(positions, 0, positions.Length);
+            p = 0;
+            s = 0;
         }
+
         public static void set_default()
         {                         //  probably need  ? //
             /////////// ToDO ///////////////////////////
