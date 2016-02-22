@@ -30,16 +30,8 @@ namespace roststyrn
             printEngineInfo(); //prints information about the recEngine - useful for testing when we change language
 
             InitializeComponent();
-
-            /* starting the simulator first cause we need to pass refs to the commands*/
-            if (sim != null)
-                sim.Close();
-            sim = new Simulator();
-            sim.Show();
-            this.TopMost = true;
-
             
-            VoiceCommands.Init(sim, "sv-SE");
+            VoiceCommands.Init("sv-SE");
 
             Console.WriteLine("\n----------- loading default commands ------------");
             string[] allCommands = VoiceCommands.GetAllCommands();
@@ -97,12 +89,6 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-
-
-            Console.WriteLine("####### Recognized input #########:" + e.Result.Text);
-            //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
-            if (sim == null)
-                return;
 
             string voiceInput = e.Result.Text;
 
@@ -198,7 +184,7 @@ namespace roststyrn
         {
             if (sim != null)
                 sim.Close();
-            sim = new Simulator();
+            sim = Simulator.GetInstance();
             sim.Show();
             this.TopMost = true;
         }
