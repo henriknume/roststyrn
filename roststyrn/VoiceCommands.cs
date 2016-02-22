@@ -9,11 +9,12 @@ namespace roststyrn
     public class VoiceCommands
     {
 
+        static string commands;
         //static Dictionary<string, List<Command>> allCommands = new Dictionary<string, List<Command>>();
         static Dictionary<string, Command> allCommands = new Dictionary<string, Command>();
         static Simulator sim;
 
-        public static void Init(Simulator sim, string filename)
+        public static void Init(Simulator sim, string lang)
         {
             VoiceCommands.sim = sim;
             //for testing:
@@ -25,9 +26,12 @@ namespace roststyrn
       
             try
             {
-                lines = System.IO.File.ReadAllLines(filename);
+                if(lang == "sv-SE")
+                    commands = Properties.Resources.default_commands_swe.Trim();
+                else if(lang == "en-US")
+                    commands = Properties.Resources.default_commands_eng.Trim();
+                lines = commands.Split('\n');
 
-                Console.WriteLine("Reading lines from:" + filename);
                 foreach (var line in lines)
                 {
                     Console.WriteLine(line);

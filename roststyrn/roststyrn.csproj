@@ -103,6 +103,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Simulator.resx">
       <DependentUpon>Simulator.cs</DependentUpon>
@@ -131,6 +132,29 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\Commands\default_commands_eng.txt" />
+    <Content Include="res\Commands\default_commands_swe.txt" />
+    <Content Include="res\Images\007358-blue-jelly-icon-arrows-arrow-thick-left.png" />
+    <Content Include="res\Images\007359-blue-jelly-icon-arrows-arrow-thick-right.png" />
+    <Content Include="res\Images\android.jpg" />
+    <Content Include="res\Images\arrow_down.png" />
+    <Content Include="res\Images\arrow_upppp.png" />
+    <Content Include="res\Images\Beer-640.jpg" />
+    <Content Include="res\Images\blue-arrow-doen.png" />
+    <Content Include="res\Images\control_table.png" />
+    <Content Include="res\Images\control_table1.png" />
+    <Content Include="res\Images\control_table2.png" />
+    <Content Include="res\Images\control_table_official.png" />
+    <Content Include="res\Images\dynamic_blue_right.png" />
+    <Content Include="res\Images\geri_don.png" />
+    <Content Include="res\Images\images.jpg" />
+    <Content Include="res\Images\mobile-back-arrow.png" />
+    <Content Include="res\Images\mobile-back-arrow1.png" />
+    <Content Include="res\Images\right-arrow-icon.jpg" />
+    <Content Include="res\Images\right-arrow-icon1.jpg" />
+    <Content Include="res\Images\right-arrow-icon2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

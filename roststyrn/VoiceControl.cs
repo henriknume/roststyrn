@@ -39,7 +39,7 @@ namespace roststyrn
             this.TopMost = true;
 
             
-            VoiceCommands.Init(sim, "default_commands_swe.txt");
+            VoiceCommands.Init(sim, "sv-SE");
 
             Console.WriteLine("\n----------- loading default commands ------------");
             string[] allCommands = VoiceCommands.GetAllCommands();
