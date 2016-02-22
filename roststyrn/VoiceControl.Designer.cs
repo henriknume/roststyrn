@@ -33,7 +33,6 @@
             this.startSimBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.langBox = new System.Windows.Forms.ComboBox();
-            this.testSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -55,12 +54,11 @@
             this.label2.Size = new System.Drawing.Size(109, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "Status: OFF";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // startSimBtn
             // 
             this.startSimBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startSimBtn.Location = new System.Drawing.Point(12, 147);
+            this.startSimBtn.Location = new System.Drawing.Point(12, 182);
             this.startSimBtn.Name = "startSimBtn";
             this.startSimBtn.Size = new System.Drawing.Size(260, 40);
             this.startSimBtn.TabIndex = 4;
@@ -84,28 +82,17 @@
             this.langBox.Items.AddRange(new object[] {
             "Svenska",
             "Engelska"});
-            this.langBox.Location = new System.Drawing.Point(82, 229);
+            this.langBox.Location = new System.Drawing.Point(12, 144);
             this.langBox.Name = "langBox";
             this.langBox.Size = new System.Drawing.Size(121, 21);
             this.langBox.TabIndex = 6;
             this.langBox.SelectedIndexChanged += new System.EventHandler(this.langBox_SelectedIndexChanged);
             // 
-            // testSend
-            // 
-            this.testSend.Location = new System.Drawing.Point(12, 259);
-            this.testSend.Name = "testSend";
-            this.testSend.Size = new System.Drawing.Size(75, 23);
-            this.testSend.TabIndex = 7;
-            this.testSend.Text = "testSend";
-            this.testSend.UseVisualStyleBackColor = true;
-            this.testSend.Click += new System.EventHandler(this.testSend_Click);
-            // 
             // VoiceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 294);
-            this.Controls.Add(this.testSend);
+            this.ClientSize = new System.Drawing.Size(284, 245);
             this.Controls.Add(this.langBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.startSimBtn);
@@ -114,7 +101,6 @@
             this.KeyPreview = true;
             this.Name = "VoiceControl";
             this.Text = "VoiceControl";
-            this.Load += new System.EventHandler(this.VoiceControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,7 +112,6 @@
         private System.Windows.Forms.Button startSimBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox langBox;
-        private System.Windows.Forms.Button testSend;
     }
 }
 

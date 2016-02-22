@@ -42,16 +42,6 @@ namespace roststyrn
             langBox.SelectedIndex = 0;      
         }
 
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-
-        }
-
-
-
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
 
@@ -113,7 +103,6 @@ namespace roststyrn
                 curEngine.RecognizeAsyncStop();
                 asyncOn = false;
             }
-
         }
 
 
@@ -121,16 +110,6 @@ namespace roststyrn
         {
             System.Threading.Thread.Sleep(5000);
             SendKeys.SendWait(" ");
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void printEngineInfo()
@@ -161,13 +140,7 @@ namespace roststyrn
             }
             //printEngineInfo();
         }
-
-        private void testSend_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
+     
         private void InitSwe()
         {
             sweCulture = new System.Globalization.CultureInfo("sv-SE");
@@ -215,11 +188,5 @@ namespace roststyrn
                 Console.WriteLine(e.ToString());
             }
         }
-
-        private void VoiceControl_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
