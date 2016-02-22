@@ -1,6 +1,6 @@
 ﻿namespace roststyrn
 {
-    partial class Form1
+    partial class VoiceControl
     {
         /// <summary>
         /// Required designer variable.

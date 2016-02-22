@@ -13,7 +13,7 @@ using Microsoft.Speech.Recognition;
 
 namespace roststyrn
 {
-    public partial class Form1 : Form
+    public partial class VoiceControl : Form
     {
         private SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("sv-SE"));
         private Choices choices;
@@ -25,7 +25,7 @@ namespace roststyrn
         private string time = DateTime.Now.ToString();
 
         //private int AudioLevel { get; }
-        public Form1()
+        public VoiceControl()
         {
             printEngineInfo(); //prints information about the recEngine - useful for testing when we change language
 
