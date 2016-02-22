@@ -14,12 +14,12 @@ namespace roststyrn
     public partial class Simulator : Form
     {
 
+        private static Simulator instance = null;
         private delegate void VoidDelegate();
         private Thread t1;
         private bool cancelWork = false;
-
         private List<Axle> axles;
-
+        /*
         public Simulator()
         {
             InitializeComponent();
@@ -31,6 +31,31 @@ namespace roststyrn
             axles.Add(new Axle(5, 0, 650));
             axles.Add(new Axle(10, 0, 24));
         }
+        */
+
+        
+        private Simulator()
+        {
+            InitializeComponent();
+            axles = new List<Axle>();
+            axles.Add(new Axle(1, 0, 650)); //last argument is real max pos for all axles
+            axles.Add(new Axle(2, 0, 150));
+            axles.Add(new Axle(3, 0, 200));
+            axles.Add(new Axle(4, 0, 300));
+            axles.Add(new Axle(5, 0, 650));
+            axles.Add(new Axle(10, 0, 24));
+            this.Show();
+        }
+
+        public static Simulator GetInstance()
+        {
+            if(instance == null)
+            {
+                instance = new Simulator();
+            }
+            return instance;
+        }
+    
 
         public void SendAxleMoveCommand(int ID, int pos, int speed)
         {
@@ -50,7 +75,7 @@ namespace roststyrn
             // GetAxle(ID).Stop();
 
             Axle currAxle = GetAxle(ID);
-            if ( currAxle!= null) currAxle.Stop();
+            if (currAxle != null) currAxle.Stop();
 
             //start all again
             cancelWork = false;
@@ -58,6 +83,11 @@ namespace roststyrn
             t1 = new Thread(() => MoveAxles(ID, -1));  // -1 as target wont change any target values
             t1.Start();
         }
+
+
+        /*    
+            --------------------------------------------
+        */
 
         private Axle GetAxle(int ID)
         {

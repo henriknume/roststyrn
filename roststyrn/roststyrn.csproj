@@ -60,7 +60,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,7 +75,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Axle.cs" />
+    <Compile Include="Change_Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Change_Settings.Designer.cs">
+      <DependentUpon>Change_Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Command.cs" />
+    <Compile Include="Customize.cs" />
+    <Compile Include="Customize_layout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customize_layout.Designer.cs">
+      <DependentUpon>Customize_layout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeskConfig.cs" />
     <Compile Include="VoiceCommands.cs" />
     <Compile Include="VoiceControl.cs">
       <SubType>Form</SubType>
@@ -92,6 +105,12 @@
     <Compile Include="Simulator.Designer.cs">
       <DependentUpon>Simulator.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Change_Settings.resx">
+      <DependentUpon>Change_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customize_layout.resx">
+      <DependentUpon>Customize_layout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VoiceControl.resx">
       <DependentUpon>VoiceControl.cs</DependentUpon>
     </EmbeddedResource>

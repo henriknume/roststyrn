@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Customize
+namespace roststyrn
 {
     public partial class Customize_layout : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace Customize
+﻿namespace roststyrn
 {
     partial class Customize_layout
     {
@@ -77,7 +77,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::Customize.Properties.Resources.control_table_official;
+            this.panel1.BackgroundImage = global::roststyrn.Properties.Resources.control_table_official;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.Name_personal);
@@ -113,7 +113,7 @@
             // 
             // PosMonitorAngle
             // 
-            this.PosMonitorAngle.BackgroundImage = global::Customize.Properties.Resources.dynamic_blue_right;
+            this.PosMonitorAngle.BackgroundImage = global::roststyrn.Properties.Resources.dynamic_blue_right;
             this.PosMonitorAngle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PosMonitorAngle.Location = new System.Drawing.Point(134, 149);
             this.PosMonitorAngle.Name = "PosMonitorAngle";
@@ -121,10 +121,10 @@
             this.PosMonitorAngle.TabIndex = 11;
             this.PosMonitorAngle.UseVisualStyleBackColor = true;
             this.PosMonitorAngle.Click += new System.EventHandler(this.Monitor_angle_up_Click);
-            // 
+            
             // PosMonitorUp
             // 
-            this.PosMonitorUp.BackgroundImage = global::Customize.Properties.Resources.arrow_upppp;
+            this.PosMonitorUp.BackgroundImage = global::roststyrn.Properties.Resources.arrow_upppp;
             this.PosMonitorUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PosMonitorUp.Location = new System.Drawing.Point(148, 246);
             this.PosMonitorUp.Name = "PosMonitorUp";
@@ -135,7 +135,7 @@
             // 
             // PosDeskUp
             // 
-            this.PosDeskUp.BackgroundImage = global::Customize.Properties.Resources.arrow_upppp;
+            this.PosDeskUp.BackgroundImage = global::roststyrn.Properties.Resources.arrow_upppp;
             this.PosDeskUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PosDeskUp.Location = new System.Drawing.Point(318, 196);
             this.PosDeskUp.Name = "PosDeskUp";
@@ -146,7 +146,7 @@
             // 
             // PosCLOVUp
             // 
-            this.PosCLOVUp.BackgroundImage = global::Customize.Properties.Resources.arrow_upppp;
+            this.PosCLOVUp.BackgroundImage = global::roststyrn.Properties.Resources.arrow_upppp;
             this.PosCLOVUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PosCLOVUp.Location = new System.Drawing.Point(10, 53);
             this.PosCLOVUp.Name = "PosCLOVUp";
@@ -157,7 +157,7 @@
             // 
             // PosCLOVOut
             // 
-            this.PosCLOVOut.BackgroundImage = global::Customize.Properties.Resources._007358_blue_jelly_icon_arrows_arrow_thick_left;
+            this.PosCLOVOut.BackgroundImage = global::roststyrn.Properties.Resources._007358_blue_jelly_icon_arrows_arrow_thick_left;
             this.PosCLOVOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PosCLOVOut.Location = new System.Drawing.Point(33, 261);
             this.PosCLOVOut.Name = "PosCLOVOut";
@@ -168,7 +168,7 @@
             // 
             // PosMonitorOut
             // 
-            this.PosMonitorOut.BackgroundImage = global::Customize.Properties.Resources._007358_blue_jelly_icon_arrows_arrow_thick_left;
+            this.PosMonitorOut.BackgroundImage = global::roststyrn.Properties.Resources._007358_blue_jelly_icon_arrows_arrow_thick_left;
             this.PosMonitorOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PosMonitorOut.Location = new System.Drawing.Point(220, 279);
             this.PosMonitorOut.Name = "PosMonitorOut";

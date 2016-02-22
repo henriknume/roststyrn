@@ -1,4 +1,4 @@
-﻿namespace Customize
+﻿namespace roststyrn
 {
     partial class Change_Setting
     {

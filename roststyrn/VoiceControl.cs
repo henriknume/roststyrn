@@ -34,12 +34,11 @@ namespace roststyrn
         //private int AudioLevel { get; }
         public VoiceControl()
         {
-            
+
 
             InitializeComponent();
 
-           
-            
+
 
             Console.WriteLine("\n----------- loading default commands ------------");
             string[] allCommands = VoiceCommands.GetAllCommands();
@@ -60,7 +59,7 @@ namespace roststyrn
                 asyncOn = false;
                 this.KeyUp += new KeyEventHandler(Form1_KeyUp);
                 langBox.SelectedIndex = 0;
-                
+
 
             }
             else
@@ -84,12 +83,6 @@ namespace roststyrn
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-
-
-            Console.WriteLine("####### Recognized input #########:" + e.Result.Text);
-            //label1.Text = "Input: " + e.Result.Text.ToUpper().Replace(" ", "_");
-            if (sim == null)
-                return;
 
             string voiceInput = e.Result.Text;
 
@@ -180,7 +173,7 @@ namespace roststyrn
         {
             if (sim != null)
                 sim.Close();
-            sim = new Simulator();
+            sim = Simulator.GetInstance();
             sim.Show();
             this.TopMost = true;
         }
@@ -209,7 +202,8 @@ namespace roststyrn
             sweCulture = new System.Globalization.CultureInfo("sv-SE");
             sweEngine = new SpeechRecognitionEngine(sweCulture);
             sweChoices = new Choices();
-            sweChoices.Add(VoiceCommands.Init("sv-SE"));
+            VoiceCommands.Init("sv-SE");
+            sweChoices.Add(VoiceCommands.GetAllCommands());
             sweGBuilder = new GrammarBuilder();
             sweGBuilder.Culture = sweCulture;
             sweGBuilder.Append(sweChoices);
@@ -232,7 +226,8 @@ namespace roststyrn
             engCulture = new System.Globalization.CultureInfo("en-US");
             engEngine = new SpeechRecognitionEngine(engCulture);
             engChoices = new Choices();
-            engChoices.Add(VoiceCommands.Init("en-US"));
+            VoiceCommands.Init("en-US");
+            engChoices.Add(VoiceCommands.GetAllCommands());
             engGBuilder = new GrammarBuilder();
             engGBuilder.Culture = engCulture;
             engGBuilder.Append(engChoices);
