@@ -30,7 +30,8 @@ namespace roststyrn
             axles.Add(new Axle(4, 0, 300));
             axles.Add(new Axle(5, 0, 650));
             axles.Add(new Axle(10, 0, 24));
-            this.Show();
+            UpdateProgressBar();
+            //this.Show();
         }
 
         public static Simulator GetInstance()
@@ -104,13 +105,16 @@ namespace roststyrn
                     if (a.AtTarget()) c++;
                 }
                 if (c == axles.Count()) running = false;
-
+                try
+                {
                 this.Invoke(new VoidDelegate(UpdateProgressBar));
+                }
+                catch(InvalidOperationException e) { };
                 if (cancelWork) break;
                 try { Thread.Sleep(100); } catch (ThreadAbortException e) { Console.WriteLine(e.StackTrace); }
             }
             try { //Might not be the best pratice to spam these try-catch
-                this.Invoke(new VoidDelegate(WorkFinished));
+            this.Invoke(new VoidDelegate(WorkFinished));
             }
             catch (System.InvalidOperationException)
             {

@@ -90,6 +90,7 @@
       <DependentUpon>Customize_layout.cs</DependentUpon>
     </Compile>
     <Compile Include="DeskConfig.cs" />
+    <Compile Include="RecognitionEngine.cs" />
     <Compile Include="VoiceCommands.cs" />
     <Compile Include="VoiceControl.cs">
       <SubType>Form</SubType>

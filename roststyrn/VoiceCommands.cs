@@ -19,7 +19,7 @@ namespace roststyrn
             //allCommands.Add("test_command", new AxleCommand(1, 60, 100) );
 
             //read all commands from database or file, and put them in allCommands
-
+            Console.WriteLine("Startar Init");
             string[] lines = new string[] { };
       
             try
@@ -30,17 +30,19 @@ namespace roststyrn
                     commands = Properties.Resources.default_commands_eng.Trim();
                 lines = commands.Split('\n');
 
+                Console.WriteLine("=== loading commands:"+ lang +" ===");
                 foreach (var line in lines)
                 {
-                    Console.WriteLine(line);
+                    Console.WriteLine(line.Trim());
                 }
+                Console.WriteLine("=========================");
 
             }
             catch (SystemException e)
             {
                 Console.Write(e.ToString());
             }
-      
+            allCommands.Clear();
             foreach (string s in lines)
             {
                 string[] temp = s.Split(':');
