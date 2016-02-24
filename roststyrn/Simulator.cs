@@ -30,7 +30,7 @@ namespace roststyrn
             axles.Add(new Axle(4, 0, 300));
             axles.Add(new Axle(5, 0, 650));
             axles.Add(new Axle(10, 0, 24));
-            this.Show();
+            //this.Show();
         }
 
         public static Simulator GetInstance()

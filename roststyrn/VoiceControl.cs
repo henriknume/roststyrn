@@ -29,6 +29,7 @@ namespace roststyrn
         private bool asyncOn;
         private bool newInput;
         private string time = DateTime.Now.ToString();
+        private Simulator sim = null;
 
         //private int AudioLevel { get; }
         public VoiceControl()
@@ -116,7 +117,8 @@ namespace roststyrn
 
         private void startSimBtn_Click(object sender, EventArgs e)
         {
-            Simulator.GetInstance().Show();
+            sim = Simulator.GetInstance();
+            sim.Show();
             this.TopMost = true;
         }
 
