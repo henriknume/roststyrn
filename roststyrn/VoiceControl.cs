@@ -19,6 +19,7 @@ namespace roststyrn
         private bool newInput;
         private string time = DateTime.Now.ToString();
         private SpeechRecognitionEngine recEngine;
+        private Simulator sim = null;
 
         //private int AudioLevel { get; }
         public VoiceControl()
@@ -119,7 +120,7 @@ namespace roststyrn
             }
             else if (langBox.Text == "Engelska")
             {
-                recEngine = RecognitionEngine.getEngine("swe");
+                recEngine = RecognitionEngine.getEngine("eng");
                 Console.WriteLine("Engelska på");
             }
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
