@@ -76,12 +76,6 @@ namespace roststyrn
         }
 
 
-        public void CloseIt()
-        {
-            System.Threading.Thread.Sleep(5000);
-            SendKeys.SendWait(" ");
-        }
-
         private void printEngineInfo()
         {
                 Console.WriteLine("Information for the current speech recognition engine:");
