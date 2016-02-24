@@ -30,6 +30,7 @@ namespace roststyrn
             axles.Add(new Axle(4, 0, 300));
             axles.Add(new Axle(5, 0, 650));
             axles.Add(new Axle(10, 0, 24));
+            UpdateProgressBar();
             //this.Show();
         }
 
@@ -104,12 +105,19 @@ namespace roststyrn
                     if (a.AtTarget()) c++;
                 }
                 if (c == axles.Count()) running = false;
-
-                this.Invoke(new VoidDelegate(UpdateProgressBar));
+                try
+                {
+                    this.Invoke(new VoidDelegate(UpdateProgressBar));
+                }
+                catch(InvalidOperationException e) { };
                 if (cancelWork) break;
                 try { Thread.Sleep(100); } catch (ThreadAbortException e) { Console.WriteLine(e.StackTrace); }
             }
-            this.Invoke(new VoidDelegate(WorkFinished));
+            try
+            {
+                this.Invoke(new VoidDelegate(WorkFinished));
+            }
+            catch (InvalidOperationException e) { };
             //Console.WriteLine("Table stopped.");
         }
 
