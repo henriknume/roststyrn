@@ -15,28 +15,16 @@ namespace roststyrn
 {
     public partial class VoiceControl : Form
     {
-        private System.Globalization.CultureInfo sweCulture;
-        private System.Globalization.CultureInfo engCulture;
-        private SpeechRecognitionEngine sweEngine;
-        private SpeechRecognitionEngine engEngine;
-        private SpeechRecognitionEngine curEngine;
-        private Choices sweChoices;
-        private GrammarBuilder sweGBuilder;
-        private Grammar sweGrammar;
-        private Choices engChoices;
-        private GrammarBuilder engGBuilder;
-        private Grammar engGrammar;
         private bool asyncOn;
         private bool newInput;
         private string time = DateTime.Now.ToString();
+        private SpeechRecognitionEngine recEngine;
 
         //private int AudioLevel { get; }
         public VoiceControl()
         {
 
             InitializeComponent();
-            InitSwe();
-            InitEng();
             asyncOn = false;
             this.KeyUp += new KeyEventHandler(Form1_KeyUp);
             langBox.SelectedIndex = 0;      
@@ -76,7 +64,7 @@ namespace roststyrn
                 label2.Text = "Status: ON";
                 try
                 {
-                    curEngine.RecognizeAsync(RecognizeMode.Multiple);
+                    recEngine.RecognizeAsync(RecognizeMode.Multiple);
                 }
                 catch (NullReferenceException e) {
                     Console.WriteLine("Error: NullReferenceException");
@@ -109,9 +97,9 @@ namespace roststyrn
         private void printEngineInfo()
         {
                 Console.WriteLine("Information for the current speech recognition engine:");
-                Console.WriteLine("  Name: {0}", curEngine.RecognizerInfo.Name);
-                Console.WriteLine("  Culture: {0}", curEngine.RecognizerInfo.Culture.ToString());
-                Console.WriteLine("  Description: {0}", curEngine.RecognizerInfo.Description);
+                Console.WriteLine("  Name: {0}", recEngine.RecognizerInfo.Name);
+                Console.WriteLine("  Culture: {0}", recEngine.RecognizerInfo.Culture.ToString());
+                Console.WriteLine("  Description: {0}", recEngine.RecognizerInfo.Description);
         }
 
         private void startSimBtn_Click(object sender, EventArgs e)
@@ -124,64 +112,19 @@ namespace roststyrn
         {
             if(langBox.Text == "Svenska")
             {
-                curEngine = sweEngine;
+                recEngine = RecognitionEngine.getEngine("swe");
+                
                 Console.WriteLine("Svenska på");
             }
             else if (langBox.Text == "Engelska")
             {
-                curEngine = engEngine;
+                recEngine = RecognitionEngine.getEngine("swe");
                 Console.WriteLine("Engelska på");
             }
+            recEngine.SpeechRecognized += recEngine_SpeechRecognized;
             //printEngineInfo();
         }
-     
-        private void InitSwe()
-        {
-            sweCulture = new System.Globalization.CultureInfo("sv-SE");
-            sweEngine = new SpeechRecognitionEngine(sweCulture);
-            sweChoices = new Choices();
-            VoiceCommands.Init("sv-SE");
-            sweChoices.Add(VoiceCommands.GetAllCommands());
-            sweGBuilder = new GrammarBuilder();
-            sweGBuilder.Culture = sweCulture;
-            sweGBuilder.Append(sweChoices);
-            sweGrammar = new Grammar(sweGBuilder);
-            try
-            {
-                sweEngine.LoadGrammarAsync(sweGrammar);
-                sweEngine.SetInputToDefaultAudioDevice();
-                sweEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                Console.WriteLine("Error: UnauthorizedAccessException");
-                Console.WriteLine(e.ToString());
-            }
-        }
 
-        private void InitEng()
-        {
-            engCulture = new System.Globalization.CultureInfo("en-US");
-            engEngine = new SpeechRecognitionEngine(engCulture);
-            engChoices = new Choices();
-            VoiceCommands.Init("en-US");
-            engChoices.Add(VoiceCommands.GetAllCommands());
-            engGBuilder = new GrammarBuilder();
-            engGBuilder.Culture = engCulture;
-            engGBuilder.Append(engChoices);
-            engGrammar = new Grammar(engGBuilder);
-            try
-            {
-                engEngine.LoadGrammarAsync(engGrammar);
-                engEngine.SetInputToDefaultAudioDevice();
-                engEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                Console.WriteLine("Error: UnauthorizedAccessException");
-                Console.WriteLine(e.ToString());
-            }
-        }
 
         private void Customize_profile_Click(object sender, EventArgs e)
         {
@@ -193,7 +136,7 @@ namespace roststyrn
             label2.Text = "Status: OFF";
             Simulator.GetInstance().SendAxleStopCommand(1);
             Simulator.GetInstance().SendAxleStopCommand(2);
-            curEngine.RecognizeAsyncStop();
+            recEngine.RecognizeAsyncStop();
             asyncOn = false;
         }
         private void VoiceControl_Deactivate(object sender, EventArgs e)

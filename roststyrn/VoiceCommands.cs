@@ -40,7 +40,7 @@ namespace roststyrn
             {
                 Console.Write(e.ToString());
             }
-      
+            allCommands.Clear();
             foreach (string s in lines)
             {
                 string[] temp = s.Split(':');
