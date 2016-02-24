@@ -17,11 +17,9 @@ namespace roststyrn
     {
         private bool asyncOn;
         private bool newInput;
-        private string time = DateTime.Now.ToString();
         private SpeechRecognitionEngine recEngine;
         private Simulator sim = null;
 
-        //private int AudioLevel { get; }
         public VoiceControl()
         {
 
