@@ -18,32 +18,30 @@ namespace roststyrn
         private static Choices engChoices;
         private static GrammarBuilder engGBuilder;
         private static Grammar engGrammar;
-        private static bool sweInit = false;
-        private static bool engInit = false;
+        private static bool init;
 
 
         public static SpeechRecognitionEngine getEngine(String lang)
         {
-            if(sweInit || engInit)
+            if(init)
                 recEngine.Dispose();
+            Console.WriteLine("Kastat current engine");
             if(lang == "swe")
             {
-                if (!sweInit)
-                {
-                    sweCulture = new System.Globalization.CultureInfo("sv-SE");
-                    sweChoices = new Choices();
-                    sweGBuilder = new GrammarBuilder();
-                    VoiceCommands.Init("sv-SE");
-                    sweChoices.Add(VoiceCommands.GetAllCommands());
-                    sweGBuilder.Culture = sweCulture;
-                    sweGBuilder.Append(sweChoices);
-                    sweGrammar = new Grammar(sweGBuilder);
-                    sweInit = true;
-                }
+                sweCulture = new System.Globalization.CultureInfo("sv-SE");
+                sweChoices = new Choices();
+                sweGBuilder = new GrammarBuilder();
+                VoiceCommands.Init("sv-SE");
+                sweChoices.Add(VoiceCommands.GetAllCommands());
+                sweGBuilder.Culture = sweCulture;
+                sweGBuilder.Append(sweChoices);
+                sweGrammar = new Grammar(sweGBuilder);
+                Console.WriteLine("Initialiserat svenskt grammar");
                 try
                 {
                     recEngine = new SpeechRecognitionEngine(sweCulture);
                     recEngine.LoadGrammarAsync(sweGrammar);
+                    Console.WriteLine("Laddat enginen med svenska");
                 }
                 catch (UnauthorizedAccessException e)
                 {
@@ -54,22 +52,20 @@ namespace roststyrn
             }
             else if(lang == "eng")
             {
-                if (!engInit)
-                {
-                    engCulture = new System.Globalization.CultureInfo("en-US");
-                    engChoices = new Choices();
-                    VoiceCommands.Init("en-US");
-                    engChoices.Add(VoiceCommands.GetAllCommands());
-                    engGBuilder = new GrammarBuilder();
-                    engGBuilder.Culture = engCulture;
-                    engGBuilder.Append(engChoices);
-                    engGrammar = new Grammar(engGBuilder);
-                    engInit = true;
-                }
+                engCulture = new System.Globalization.CultureInfo("en-US");
+                engChoices = new Choices();
+                VoiceCommands.Init("en-US");
+                engChoices.Add(VoiceCommands.GetAllCommands());
+                engGBuilder = new GrammarBuilder();
+                engGBuilder.Culture = engCulture;
+                engGBuilder.Append(engChoices);
+                engGrammar = new Grammar(engGBuilder);
+                Console.WriteLine("Initialiserat engelskt grammar");
                 try
                 {
                     recEngine = new SpeechRecognitionEngine(engCulture);
                     recEngine.LoadGrammarAsync(engGrammar);
+                    Console.WriteLine("Laddat enginen med engelska");
                 }
                 catch (UnauthorizedAccessException e)
                 {
@@ -78,6 +74,7 @@ namespace roststyrn
                 }
 
             }
+            init = true;
             recEngine.SetInputToDefaultAudioDevice();
             return recEngine;
         }

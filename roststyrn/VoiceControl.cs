@@ -42,6 +42,8 @@ namespace roststyrn
             {
                 VoiceCommands.GetCommand(voiceInput).Send();
             }
+            else
+                Console.WriteLine("Command doesn't exist");
 
             /* case "öppna chrome":
                  Process.Start("chrome.exe", "http:\\www.google.com");

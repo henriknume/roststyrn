@@ -19,7 +19,7 @@ namespace roststyrn
             //allCommands.Add("test_command", new AxleCommand(1, 60, 100) );
 
             //read all commands from database or file, and put them in allCommands
-
+            Console.WriteLine("Startar Init");
             string[] lines = new string[] { };
       
             try
