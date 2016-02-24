@@ -95,13 +95,7 @@ namespace roststyrn
                 return;
             if (e.KeyCode == Keys.R || e.KeyCode == Keys.ControlKey)
             {
-                label2.Text = "Status: OFF";
-                
-                Simulator.GetInstance().SendAxleStopCommand(1);
-                Simulator.GetInstance().SendAxleStopCommand(2);
-                
-                curEngine.RecognizeAsyncStop();
-                asyncOn = false;
+                deactivateEngine();
             }
         }
 
@@ -193,6 +187,18 @@ namespace roststyrn
         {
             var customize = new Customize_layout();
             customize.Show();
+        }
+        private void deactivateEngine()
+        {
+            label2.Text = "Status: OFF";
+            Simulator.GetInstance().SendAxleStopCommand(1);
+            Simulator.GetInstance().SendAxleStopCommand(2);
+            curEngine.RecognizeAsyncStop();
+            asyncOn = false;
+        }
+        private void VoiceControl_Deactivate(object sender, EventArgs e)
+        {
+            deactivateEngine();
         }
     }
 }

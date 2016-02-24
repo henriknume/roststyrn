@@ -113,6 +113,7 @@
             this.KeyPreview = true;
             this.Name = "VoiceControl";
             this.Text = "VoiceControl";
+            this.Deactivate += new System.EventHandler(this.VoiceControl_Deactivate);
             this.ResumeLayout(false);
             this.PerformLayout();
 
