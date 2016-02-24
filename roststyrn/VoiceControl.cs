@@ -43,19 +43,6 @@ namespace roststyrn
             else
                 Console.WriteLine("Command doesn't exist");
 
-            /* case "öppna chrome":
-                 Process.Start("chrome.exe", "http:\\www.google.com");
-                 break;
-           
-                case "öppna notepad":
-                    Process.Start("notepad.exe");
-                    break;
-                case "vad är klockan":
-                case "klockan":
-                    (new System.Threading.Thread(CloseIt)).Start();
-                    MessageBox.Show(string.Format("Datum och tid är {0}", time));
-                    break;
-            }*/
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
