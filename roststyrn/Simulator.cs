@@ -109,7 +109,13 @@ namespace roststyrn
                 if (cancelWork) break;
                 try { Thread.Sleep(100); } catch (ThreadAbortException e) { Console.WriteLine(e.StackTrace); }
             }
-            this.Invoke(new VoidDelegate(WorkFinished));
+            try { //Might not be the best pratice to spam these try-catch
+                this.Invoke(new VoidDelegate(WorkFinished));
+            }
+            catch (System.InvalidOperationException)
+            {
+                Console.WriteLine(" ");
+            }
             //Console.WriteLine("Table stopped.");
         }
 

@@ -72,7 +72,14 @@ namespace roststyrn
             {
                 command = new LampCommand(Int32.Parse(args[1]), Int32.Parse(args[2]));
             }
-
+            else if (args[0] == "OpenProgramCommand")
+            {
+                command = new OpenProgramCommand((args[1]));
+            }
+            else if (args[0] == "WowFactorCommand")
+            {
+                command = new WowFactorCommand((args[1]));
+            }
             return command;
         }
 
