@@ -66,6 +66,7 @@ namespace roststyrn
             Console.WriteLine("SendLampCommand(" + ID + ", "+ mVDC+")");
         }
     }
+    /*
     public class OpenProgramCommand : Command
     {
 
@@ -81,7 +82,7 @@ namespace roststyrn
             Console.WriteLine("opening program: {0}", program);
         }
     }
-
+*/
 
 
     public class WowFactorCommand : Command
