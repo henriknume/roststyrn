@@ -138,7 +138,9 @@ namespace roststyrn
         private void deactivateEngine()
         {
             label2.Text = "Status: OFF";
+            Console.WriteLine("SendAxleStopCommand(1)");
             Simulator.GetInstance().SendAxleStopCommand(1);
+            Console.WriteLine("SendAxleStopCommand(2)");
             Simulator.GetInstance().SendAxleStopCommand(2);
             recEngine.RecognizeAsyncStop();
             asyncOn = false;
