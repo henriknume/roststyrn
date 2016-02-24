@@ -30,10 +30,12 @@ namespace roststyrn
                     commands = Properties.Resources.default_commands_eng.Trim();
                 lines = commands.Split('\n');
 
+                Console.WriteLine("=== loading commands:"+ lang +" ===");
                 foreach (var line in lines)
                 {
-                    Console.WriteLine(line);
+                    Console.WriteLine(line.Trim());
                 }
+                Console.WriteLine("=========================");
 
             }
             catch (SystemException e)

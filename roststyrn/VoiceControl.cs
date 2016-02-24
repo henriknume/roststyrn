@@ -104,7 +104,8 @@ namespace roststyrn
 
         private void startSimBtn_Click(object sender, EventArgs e)
         {
-            Simulator.GetInstance().Show();
+            sim = Simulator.GetInstance();
+            sim.Show();
             this.TopMost = true;
         }
 
@@ -124,7 +125,7 @@ namespace roststyrn
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
             //printEngineInfo();
         }
-
+     
 
         private void Customize_profile_Click(object sender, EventArgs e)
         {
