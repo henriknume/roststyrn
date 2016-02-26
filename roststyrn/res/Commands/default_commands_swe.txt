@@ -7,5 +7,5 @@ stoppa skärm:StopCommand,2
 öppna krom:OpenProgramCommand,chrome.exe
 anteckningsblock:OpenProgramCommand,notepad.exe
 notepad:OpenProgramCommand,notepad.exe
-klockan:WowFactorCommand,time
+klockan:TimeCommand,time
 

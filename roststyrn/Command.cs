@@ -85,13 +85,13 @@ namespace roststyrn
 */
 
 
-    public class WowFactorCommand : Command
+    public class TimeCommand : Command
 {
         private string time;
 
         
 
-    public WowFactorCommand(string time)
+    public TimeCommand(string time)
         {
             this.time = DateTime.Now.ToString();
             time = DateTime.Now.ToString();
