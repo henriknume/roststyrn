@@ -49,7 +49,9 @@ namespace roststyrn
         {
             if ((keyData == (Keys.Control | Keys.R)) && asyncOn == false)
             {
-                label2.Text = "Status: ON";
+                label2.Text = "Status: Listening...";
+                pictureBox1.Visible = false;
+                pictureBox2.Visible = true;
                 try
                 {
                     recEngine.RecognizeAsync(RecognizeMode.Multiple);
@@ -99,10 +101,10 @@ namespace roststyrn
                 
                 Console.WriteLine("Svenska på");
             }
-            else if (langBox.Text == "Engelska")
+            else if (langBox.Text == "English")
             {
                 recEngine = RecognitionEngine.getEngine("eng");
-                Console.WriteLine("Engelska på");
+                Console.WriteLine("English on");
             }
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
             //printEngineInfo();
@@ -116,7 +118,12 @@ namespace roststyrn
         }
         private void deactivateEngine()
         {
-            label2.Text = "Status: OFF";
+            label2.Text = "Status: Not listening";
+            pictureBox2.Visible = false;
+            pictureBox1.Visible = true;
+            
+          
+
             Console.WriteLine("SendAxleStopCommand(1)");
             Simulator.GetInstance().SendAxleStopCommand(1);
             Console.WriteLine("SendAxleStopCommand(2)");
@@ -127,6 +134,21 @@ namespace roststyrn
         private void VoiceControl_Deactivate(object sender, EventArgs e)
         {
             deactivateEngine();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
