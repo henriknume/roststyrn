@@ -85,13 +85,14 @@ namespace roststyrn
 */
 
 
-    public class WowFactorCommand : Command
+
+    public class TimeCommand : Command
     {
         private string time;
 
         
 
-    public WowFactorCommand(string time)
+        public TimeCommand(string time)
         {
             this.time = DateTime.Now.ToString();
             time = DateTime.Now.ToString();
@@ -147,6 +148,7 @@ namespace roststyrn
             sim.SendAxleMoveCommand(5, a5, 100);
             sim.SendAxleMoveCommand(10, a10, 100);
             //sim.SendLampCommand(ID, mVDC);
+            // more commands for the lamp settings here
             
         }
     }

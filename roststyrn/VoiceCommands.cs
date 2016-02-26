@@ -78,9 +78,9 @@ namespace roststyrn
            // {
              //   command = new OpenProgramCommand((args[1]));
            // }
-            else if (args[0] == "WowFactorCommand")
+            else if (args[0] == "TimeCommand")
             {
-                command = new WowFactorCommand((args[1]));
+                command = new TimeCommand((args[1]));
             }
             return command;
         }
