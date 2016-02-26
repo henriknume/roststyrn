@@ -1,6 +1,6 @@
 ﻿namespace roststyrn
 {
-    class DeskConfig
+    public class DeskConfig
     {
         public string PosName { get; set; }
         public string PosDescription { get; set; }
