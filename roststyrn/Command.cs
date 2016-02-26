@@ -86,7 +86,7 @@ namespace roststyrn
 
 
     public class WowFactorCommand : Command
-{
+    {
         private string time;
 
         
@@ -114,6 +114,40 @@ namespace roststyrn
         {
             System.Threading.Thread.Sleep(5000);
             SendKeys.SendWait(" ");
+        }
+    }
+
+    public class ProfileCommand : Command
+    {
+        private int a1;
+        private int a2;
+        private int a3;
+        private int a4;
+        private int a5;
+        private int a10;
+
+        public ProfileCommand(DeskConfig config)
+        {
+            a1 = config.PosDeskUp;
+            a2 = config.PosMonitorOut;
+            a3 = config.PosMonitorUp;
+            a4 = config.PosCLOVOut;
+            a5 = config.PosCLOVUp;
+            a10 = config.PosMonitorAngle;
+        }
+
+        public override void Send()
+        {
+            Simulator sim = Simulator.GetInstance();
+
+            sim.SendAxleMoveCommand(1, a1, 100);
+            sim.SendAxleMoveCommand(2, a2, 100);
+            sim.SendAxleMoveCommand(3, a3, 100);
+            sim.SendAxleMoveCommand(4, a4, 100);
+            sim.SendAxleMoveCommand(5, a5, 100);
+            sim.SendAxleMoveCommand(10, a10, 100);
+            //sim.SendLampCommand(ID, mVDC);
+            
         }
     }
 
