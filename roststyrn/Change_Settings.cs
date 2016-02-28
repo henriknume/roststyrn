@@ -29,7 +29,7 @@ namespace roststyrn
             bool result = int.TryParse(newPos.Text, out tempPos); // check if String is numeric.. if true -> tempPos = newPos.Text
             if (result)
             {
-                Customize.changePos(tempPos);
+                Customize.posDictionary(tempPos);
 
             }
         }

@@ -14,70 +14,78 @@ namespace roststyrn
 
     class Customize
     {
-        private static int size = 6;
+
         private static DeskConfig desk = new DeskConfig();
         private static Dictionary<String, Dictionary<String, int>> user_Positions_Profile = new Dictionary<String, Dictionary<String, int>>();
         private static Dictionary<String, int> shafts_Pos = new Dictionary<string, int>();
-        private static String[] shafts = new String[size];
-        private static int[] positions = new int[size];
-        private static int p, s = 0;
-        private static String tempNameOfShaft = "";       // sets to remember" when shaft already exist" -> to that existing shaft
+        private static String currentAxelUpdate = "";
 
-        public static void changePos(int pos)
+        public static void axelDictionary(String axel)
         {
-            if (0 < p && p <= size-1)
-            {
-                if (shafts.Length > positions.Length)
-                {
-                    positions[p] = pos;
-                    p++;
-                }
-                else {          // update already existing pos //
 
-                   int indexExistingPos = getPosForExistingShaft(tempNameOfShaft);
-                   positions[indexExistingPos] = pos;
-                }
+            if (!shafts_Pos.ContainsKey(axel))
+            {
+                shafts_Pos.Add(axel, getDeskConfigAxelValue(axel)); // get current user Value 
+                currentAxelUpdate = axel;
             }
+            else
+            {
+                currentAxelUpdate = axel;
+            }
+
         }
-        public static void changeShaft(String nameOfShaft)
+        public static void posDictionary(int pos)
         {
-            if (!alreadyExist(nameOfShaft))   // check if shaft already exist in array, if true -> dont add ..
+
+            if (isValid(currentAxelUpdate, pos))
             {
-                shafts[s] = nameOfShaft;
-                s++;
+                shafts_Pos[currentAxelUpdate] = pos;
             }
-            else {
-                tempNameOfShaft = nameOfShaft;
-            }
+
         }
-        public static void mergePosAndShafts()
-        {                                                               // called by save button...........
+        public static int getDeskConfigAxelValue(String axel)
+        {
 
-            for (int i = 0; i < size - 1; i++)    
+            if (axel.Equals("PosDeskUp"))
             {
-                if (shafts[i] == null || positions[i] == null) { break; }
-                if (isValid(shafts[i], positions[i]))             // check if valid "pos" for that specific "shaft"
-                {   
-                    shafts_Pos.Add(shafts[i], positions[i]);
-                }
+                return desk.PosDeskUp;
             }
-            shafts_Pos.Clear(); // reset dictionary for shaft_pos, so it can be re-used ....
-
+            else if (axel.Equals("PosMonitorOut"))
+            {
+                return desk.PosMonitorOut;
+            }
+            else if (axel.Equals("PosMonitorUp"))
+            {
+                return desk.PosMonitorUp;
+            }
+            else if (axel.Equals("PosMonitorAngle"))
+            {
+                return desk.PosMonitorAngle;
+            }
+            else if (axel.Equals("PosCLOVOut"))
+            {
+                return desk.PosCLOVOut;
+            }
+            else
+            {
+                return desk.PosCLOVUp;    // axel == PosCLOVUp
+            }
         }
         public static void updateUser(String User)     // called by save button
         {
-            if (! User.Equals("")) // not allowed to be blank..
+            //if (!User.Equals("")) // not allowed to be blank..
+            //{
+            if (user_Positions_Profile.ContainsKey(User))   // if key exist
             {
-                if (user_Positions_Profile.ContainsKey(User))   // if key exist
-                {
-                    user_Positions_Profile[User] = shafts_Pos; // update key with the new value ....
-                }
-                else
-                {
-                    user_Positions_Profile.Add(User, shafts_Pos);   // adds new user to a dictionary with custom shaft positions
-                }                           
+                user_Positions_Profile[User] = shafts_Pos; // update key with the new value ....
             }
-            reset();             // reset position  shafts array for new updates for user profile...
+            else
+            {
+                user_Positions_Profile.Add(User, shafts_Pos);   // adds new user to a dictionary with custom shaft positions
+            }
+
+            //}
+
         }
         public static void updateDeskConfig()
         {    // called by save button  .... // this is where updates are made  // 
@@ -110,9 +118,10 @@ namespace roststyrn
                     desk.PosCLOVUp = shafts_Pos[pos];
                 }
             }
+            shafts_Pos.Clear();
         }
         public static bool isValid(String nameOfShaft, int pos)
-        {            //  check if pos is valid for that shaft  //
+        {            //  check if pos is valid for that axel  //
 
             if (nameOfShaft.Equals("PosDeskUp"))
             {
@@ -146,44 +155,35 @@ namespace roststyrn
             }
             else { return false; }
         }
-        public static bool alreadyExist(String nameOfShaft)
-        {     // checks if shaft already exists in array  //
 
-            foreach (var current in shafts)
-            {
-                if (current == null) { return false; }
-                if (current.Equals(nameOfShaft)) { return true; }
-            }
-            return false;
+        public static Dictionary<String, int> printAllSavedData()
+        {  // used for testing....
+
+            return shafts_Pos;
+
         }
-        public static int getPosForExistingShaft(String name) {
-            
-            int count = 0;
-            for (int i = 0; i < shafts.Length; i++ )
+        public static Dictionary<String, int> getUserProfile(String user)
+        { // called by voiceControl.......
+
+            foreach (var currentUser in user_Positions_Profile.Keys)
             {
-                if (shafts[i].Equals(name)) {
-                    count = i;
+
+                if (currentUser.Equals(user))
+                {
+
+                    return user_Positions_Profile[currentUser];   // use these values for axels..in voiceCommand.. to adjust profile...
+
                 }
-            }
-            return count;
-        }
 
-        public static void reset()
+            }
+            return null;   // user does not exist
+        }
+        public static void saveUserProfile(String user)
         {
 
-            Array.Clear(shafts, 0, shafts.Length);
-            Array.Clear(positions, 0, positions.Length);
-            p = 0;
-            s = 0;
+            /////////////////////  Save in local file... textfile....  ////////////////////////
+
         }
 
-        public static void set_default()
-        {                         //  probably need  ? //
-            /////////// ToDO ///////////////////////////
-        }
-        public static void set_all_default()
-        {                       //   probably need  ? //      
-            /////////// ToDO //////////////////////////
-        }
     }
 }
