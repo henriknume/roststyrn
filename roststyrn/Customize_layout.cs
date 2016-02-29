@@ -134,6 +134,7 @@ namespace roststyrn
         {
             Customize.updateUser(Name_personal.Text);
             Customize.updateDeskConfig();
+            Close();
         }
     }
 }

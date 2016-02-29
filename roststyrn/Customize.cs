@@ -73,18 +73,18 @@ namespace roststyrn
         }
         public static void updateUser(String User)     // called by save button
         {
-            //if (!User.Equals("")) // not allowed to be blank..
-            //{
-            if (user_Positions_Profile.ContainsKey(User))   // if key exist
+            if (!User.Equals("")) // not allowed to be blank..
             {
+                if (user_Positions_Profile.ContainsKey(User))   // if key exist
+                {
                 user_Positions_Profile[User] = shafts_Pos; // update key with the new value ....
-            }
-            else
-            {
+                }
+                else
+                {
                 user_Positions_Profile.Add(User, shafts_Pos);   // adds new user to a dictionary with custom shaft positions
-            }
+                }
 
-            //}
+            }
 
         }
         public static void updateDeskConfig()

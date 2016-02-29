@@ -32,6 +32,7 @@ namespace roststyrn
                 Customize.posDictionary(tempPos);
 
             }
+            Close();
         }
 
         private void Set_default_Click(object sender, EventArgs e)
