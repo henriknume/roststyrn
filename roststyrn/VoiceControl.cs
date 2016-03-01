@@ -150,5 +150,26 @@ namespace roststyrn
         {
 
         }
+
+        private void viewCommandsButtons_Click(object sender, EventArgs e)
+        {  
+            string[] allCommands = VoiceCommands.GetAllCommands();
+            StringBuilder sb = new StringBuilder();
+
+            if(allCommands.Length > 0)
+            {
+                sb.AppendLine("All available commands:\n");
+                foreach (String s in allCommands)
+                {
+                    sb.AppendLine(s);
+                }
+            }
+            else
+            {
+                sb.AppendLine("No commands available.");
+            }
+            
+            MessageBox.Show(sb.ToString());
+        }
     }
 }
