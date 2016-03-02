@@ -9,75 +9,41 @@ namespace roststyrn
 {
     class RecognitionEngine
     {
-        private static System.Globalization.CultureInfo sweCulture;
-        private static System.Globalization.CultureInfo engCulture;
+        private static System.Globalization.CultureInfo culture;
         private static SpeechRecognitionEngine recEngine;
-        private static Choices sweChoices;
-        private static GrammarBuilder sweGBuilder;
-        private static Grammar sweGrammar;
-        private static Choices engChoices;
-        private static GrammarBuilder engGBuilder;
-        private static Grammar engGrammar;
+        private static Choices choices;
+        private static GrammarBuilder grammarBuilder;
+        private static Grammar grammar;
         private static bool init;
-
 
         public static SpeechRecognitionEngine getEngine(String lang)
         {
             if(init)
                 recEngine.Dispose();
             Console.WriteLine("Kastat current engine");
-            if(lang == "swe")
+            culture = new System.Globalization.CultureInfo(lang);
+            choices = new Choices();
+            grammarBuilder = new GrammarBuilder();
+            VoiceCommands.Init(lang);
+            choices.Add(VoiceCommands.GetAllCommands());
+            grammarBuilder.Culture = culture;
+            grammarBuilder.Append(choices);
+            grammar = new Grammar(grammarBuilder);
+            Console.WriteLine("Initialiserat svenskt grammar");
+            try
             {
-                sweCulture = new System.Globalization.CultureInfo("sv-SE");
-                sweChoices = new Choices();
-                sweGBuilder = new GrammarBuilder();
-                VoiceCommands.Init("sv-SE");
-                sweChoices.Add(VoiceCommands.GetAllCommands());
-                sweGBuilder.Culture = sweCulture;
-                sweGBuilder.Append(sweChoices);
-                sweGrammar = new Grammar(sweGBuilder);
-                Console.WriteLine("Initialiserat svenskt grammar");
-                try
-                {
-                    recEngine = new SpeechRecognitionEngine(sweCulture);
-                    recEngine.LoadGrammarAsync(sweGrammar);
-                    Console.WriteLine("Laddat enginen med svenska");
-                }
-                catch (UnauthorizedAccessException e)
-                {
-                    Console.WriteLine("Error: UnauthorizedAccessException");
-                    Console.WriteLine(e.ToString());
-                }
-                
+                recEngine = new SpeechRecognitionEngine(culture);
+                recEngine.LoadGrammarAsync(grammar);
+                Console.WriteLine("Laddat enginen med " + lang);
             }
-            else if(lang == "eng")
+            catch (UnauthorizedAccessException e)
             {
-                engCulture = new System.Globalization.CultureInfo("en-US");
-                engChoices = new Choices();
-                VoiceCommands.Init("en-US");
-                engChoices.Add(VoiceCommands.GetAllCommands());
-                engGBuilder = new GrammarBuilder();
-                engGBuilder.Culture = engCulture;
-                engGBuilder.Append(engChoices);
-                engGrammar = new Grammar(engGBuilder);
-                Console.WriteLine("Initialiserat engelskt grammar");
-                try
-                {
-                    recEngine = new SpeechRecognitionEngine(engCulture);
-                    recEngine.LoadGrammarAsync(engGrammar);
-                    Console.WriteLine("Laddat enginen med engelska");
-                }
-                catch (UnauthorizedAccessException e)
-                {
-                    Console.WriteLine("Error: UnauthorizedAccessException");
-                    Console.WriteLine(e.ToString());
-                }
-
-            }
+                Console.WriteLine("Error: UnauthorizedAccessException");
+                Console.WriteLine(e.ToString());
+            } 
             init = true;
             recEngine.SetInputToDefaultAudioDevice();
             return recEngine;
         }
-
     }
 }

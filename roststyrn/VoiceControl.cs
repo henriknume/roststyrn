@@ -97,13 +97,13 @@ namespace roststyrn
         {
             if(langBox.Text == "Svenska")
             {
-                recEngine = RecognitionEngine.getEngine("swe");
+                recEngine = RecognitionEngine.getEngine("sv-SE");
                 
                 Console.WriteLine("Svenska på");
             }
             else if (langBox.Text == "English")
             {
-                recEngine = RecognitionEngine.getEngine("eng");
+                recEngine = RecognitionEngine.getEngine("en-US");
                 Console.WriteLine("English on");
             }
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
