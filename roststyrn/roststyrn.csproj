@@ -75,19 +75,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Axle.cs" />
-    <Compile Include="Change_Settings.cs">
+    <Compile Include="ChangeSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Change_Settings.Designer.cs">
-      <DependentUpon>Change_Settings.cs</DependentUpon>
+    <Compile Include="ChangeSettings.Designer.cs">
+      <DependentUpon>ChangeSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Command.cs" />
     <Compile Include="Customize.cs" />
-    <Compile Include="Customize_layout.cs">
+    <Compile Include="CustomizeLayout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customize_layout.Designer.cs">
-      <DependentUpon>Customize_layout.cs</DependentUpon>
+    <Compile Include="CustomizeLayout.Designer.cs">
+      <DependentUpon>CustomizeLayout.cs</DependentUpon>
     </Compile>
     <Compile Include="DeskConfig.cs" />
     <Compile Include="RecognitionEngine.cs" />
@@ -107,11 +107,11 @@
     <Compile Include="Simulator.Designer.cs">
       <DependentUpon>Simulator.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Change_Settings.resx">
-      <DependentUpon>Change_Settings.cs</DependentUpon>
+    <EmbeddedResource Include="ChangeSettings.resx">
+      <DependentUpon>ChangeSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customize_layout.resx">
-      <DependentUpon>Customize_layout.cs</DependentUpon>
+    <EmbeddedResource Include="CustomizeLayout.resx">
+      <DependentUpon>CustomizeLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VoiceControl.resx">
       <DependentUpon>VoiceControl.cs</DependentUpon>

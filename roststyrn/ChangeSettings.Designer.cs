@@ -1,6 +1,6 @@
 ﻿namespace roststyrn
 {
-    partial class Change_Setting
+    partial class ChangeSetting
     {
         /// <summary>
         /// Required designer variable.

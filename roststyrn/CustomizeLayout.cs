@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace roststyrn
 {
-    public partial class Customize_layout : Form
+    public partial class CustomizeLayout : Form
     {
-        public Customize_layout()
+        public CustomizeLayout()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace roststyrn
             String nameOfAxel = PosDeskUp.Name;
             //Customize.changeShaft(nameOfAxel);
             Customize.axelDictionary(nameOfAxel);
-            var setting = new Change_Setting();
+            var setting = new ChangeSetting();
             setting.Show();
 
         }
@@ -53,7 +53,7 @@ namespace roststyrn
             String nameOfAxel = PosMonitorOut.Name;
             //Customize.changeShaft(nameOfAxel);
             Customize.axelDictionary(nameOfAxel);
-            var setting = new Change_Setting();
+            var setting = new ChangeSetting();
             setting.Show();
         }
 
@@ -62,7 +62,7 @@ namespace roststyrn
             String nameOfAxel = PosMonitorUp.Name;
             //Customize.changeShaft(nameOfAxel);
             Customize.axelDictionary(nameOfAxel);
-            var setting = new Change_Setting();
+            var setting = new ChangeSetting();
             setting.Show();
         }
 
@@ -87,7 +87,7 @@ namespace roststyrn
             String nameOfAxel = PosCLOVOut.Name;
             // Customize.changeShaft(nameOfAxel);
             Customize.axelDictionary(nameOfAxel);
-            var setting = new Change_Setting();
+            var setting = new ChangeSetting();
             setting.Show();
         }
 
@@ -104,7 +104,7 @@ namespace roststyrn
             String nameOfAxel = PosMonitorAngle.Name;
             //Customize.changeShaft(nameOfAxel);
             Customize.axelDictionary(nameOfAxel);
-            var setting = new Change_Setting();
+            var setting = new ChangeSetting();
             setting.Show();
         }
 
@@ -121,7 +121,7 @@ namespace roststyrn
             String nameOfAxel = PosCLOVUp.Name;
             //Customize.changeShaft(nameOfAxel);
             Customize.axelDictionary(nameOfAxel);
-            var setting = new Change_Setting();
+            var setting = new ChangeSetting();
             setting.Show();
         }
 

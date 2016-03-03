@@ -1,6 +1,6 @@
 ﻿namespace roststyrn
 {
-    partial class Customize_layout
+    partial class CustomizeLayout
     {
         /// <summary>
         /// Required designer variable.

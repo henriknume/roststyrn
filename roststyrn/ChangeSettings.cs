@@ -11,9 +11,9 @@ using System.Collections;
 
 namespace roststyrn
 {
-    public partial class Change_Setting : Form
+    public partial class ChangeSetting : Form
     {
-        public Change_Setting()
+        public ChangeSetting()
         {
             InitializeComponent();
         }

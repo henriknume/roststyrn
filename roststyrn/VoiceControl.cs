@@ -113,7 +113,7 @@ namespace roststyrn
 
         private void Customize_profile_Click(object sender, EventArgs e)
         {
-            var customize = new Customize_layout();
+            var customize = new CustomizeLayout();
             customize.Show();
         }
         private void deactivateEngine()
