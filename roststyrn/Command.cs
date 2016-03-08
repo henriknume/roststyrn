@@ -66,25 +66,6 @@ namespace roststyrn
             Console.WriteLine("SendLampCommand(" + ID + ", "+ mVDC+")");
         }
     }
-    /*
-    public class OpenProgramCommand : Command
-    {
-
-        private string program;
-
-        public OpenProgramCommand(string exefile)
-        {
-            program = exefile;
-        }
-        public override void Send()
-        {
-            Process.Start(program);
-            Console.WriteLine("opening program: {0}", program);
-        }
-    }
-*/
-
-
 
     public class TimeCommand : Command
     {

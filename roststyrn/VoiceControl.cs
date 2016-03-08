@@ -136,21 +136,6 @@ namespace roststyrn
             deactivateEngine();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void viewCommandsButtons_Click(object sender, EventArgs e)
         {  
             string[] allCommands = VoiceCommands.GetAllCommands();

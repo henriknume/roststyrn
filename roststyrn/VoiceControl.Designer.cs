@@ -50,7 +50,6 @@
             this.label2.Size = new System.Drawing.Size(173, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "Status: Not listening";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // startSimBtn
             // 
@@ -104,7 +103,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(56, 62);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -114,7 +112,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(56, 76);
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // viewCommandsButtons
             // 

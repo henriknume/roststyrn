@@ -181,8 +181,8 @@ namespace roststyrn
         public static void saveUserProfile(String user)
         {
 
+            VoiceCommands.AddCommand(user, new ProfileCommand(desk));
             /////////////////////  Save in local file... textfile....  ////////////////////////
-
         }
 
     }
